@@ -3296,7 +3296,7 @@
           messages: prompt,
           seed: seedVar,
           private: true,
-          max_tokens: 1000000,
+          max_tokens: 8192,
         };
         
         // Call the Pollinations API
@@ -3385,7 +3385,7 @@
             messages: prompt,
             seed: seedVar, // Random seed
             private: true,
-            max_tokens: 1000000, // Adjust as needed
+            max_tokens: 8192, // Adjust as needed
           };
         // Call the Pollinations API
         const response = await fetch(url, {
