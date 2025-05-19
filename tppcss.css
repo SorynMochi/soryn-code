@@ -3737,7 +3737,7 @@
     #mainContent {
       display: flex;
       flex-direction: column;
-      min-height: calc(100vh - 135px);
+      max-height: 96vh;
     }
     #mainContent > div:first-child {
       display: flex;
@@ -3824,7 +3824,7 @@
     margin-bottom: 5px;
     line-height: 1.6;
   }
-    #backupbtn, #importbtn, #exportNovel, #aboutBtn {
+    #backupbtn, #importbtn, #exportNovel, #aboutBtn, #supportBtn {
       color: var(--text);
       padding: 12px 16px;
       text-decoration: none;
@@ -3877,7 +3877,7 @@
       font-size: 16px;
       color: var(--text);
     }
-    #addChapterBtn, #addCharacterBtn, #addLoreBtn, #supportBtn {
+    #addChapterBtn, #addCharacterBtn, #addLoreBtn {
       display: block;
       width: 100%;
       margin-bottom: 10px;
@@ -3888,6 +3888,7 @@
       border-radius: 4px;
       text-decoration: none;
     }
+
     #chapterList, #characterList, #loreList {
       list-style: none;
       padding: 0;
@@ -3930,10 +3931,10 @@
       flex-wrap: wrap;
       gap: 20px;
     }
-    #editorContainer {
+    #editorContainer, #supportContainer {
       flex: 1;
-      height: 100vh;
-      max-height: 100vh;
+      height: 96vh;
+      max-height: 96vh;
       display: none;
       flex-direction: column;
       padding: 10px;
@@ -4083,6 +4084,8 @@
       display: none;
       flex-direction: column;
       padding: 10px;
+      position: relative;
+      top: 0;
       background: var(--background);
     }
     .editor-header {
