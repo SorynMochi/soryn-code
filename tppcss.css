@@ -2552,12 +2552,12 @@
       display: none;
     }
     
-    #editorContainer { width: 100%; }
-    #novelListContainer { width: 100%; }
-    #characterEditorContainer { width: 100%; }
-    #novelEditorContainer { width: 100%; }
-    #loreEditorContainer { width: 100%; }
-    #mainContent { padding-bottom: 50px; }
+    #editorContainer { width: 100%; height: 98vh; }
+    #novelListContainer { width: 100%; height: 98vh; }
+    #characterEditorContainer { width: 100%; height: 98vh; }
+    #novelEditorContainer { width: 100%; height: 98vh; }
+    #loreEditorContainer { width: 100%; height: 98vh; }
+    #mainContent { padding-bottom: 50px; width: 100%; height: 98vh; }
     #toolbar { flex-wrap: wrap; overflow-x: auto; }
   }
   
