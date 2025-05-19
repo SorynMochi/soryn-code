@@ -8,6 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="language" content="English">
 <meta name="author" content="SorynMochi">
+<meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="https://user-uploads.perchance.org/file/aef7b2d875fd600dc63529c60bd23da1.png" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Open+Sans&family=Lato&family=Montserrat&family=Oswald&family=Source+Sans+Pro&family=Raleway&family=PT+Sans&family=Nunito&family=Merriweather&family=Poppins&family=Playfair+Display&family=Roboto+Condensed&family=Ubuntu&family=Roboto+Slab&family=Noto+Sans&family=Quicksand&family=Crimson+Text&family=Work+Sans&family=Inter&family=Caveat&family=Dancing+Script&family=Pacifico&family=Shadows+Into+Light&family=Indie+Flower&family=Satisfy&family=Lobster&family=Architects+Daughter&family=Comic+Neue&family=Permanent+Marker&family=Abril+Fatface&family=Russo+One&family=Exo+2&family=Poiret+One&family=Kaushan+Script&family=Righteous&family=Yanone+Kaffeesatz&family=Amatic+SC&family=Josefin+Sans&family=Bebas+Neue&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Abel&family=Archivo&family=Barlow&family=Comfortaa&family=Didact+Gothic&family=Encode+Sans&family=Fira+Sans&family=Heebo&family=IBM+Plex+Sans&family=Karla&family=Lexend&family=Manrope&family=Mulish&family=Nunito+Sans&family=Overpass&family=Public+Sans&family=Rubik&display=swap" rel="stylesheet">
@@ -26,9 +27,4825 @@
   <link href="https://fonts.googleapis.com/css2?family=Bahiana&family=Berkshire+Swash&family=Cagliostro&family=Carrois+Gothic+SC&family=Charmonman&family=Diplomata+SC&family=Dr+Sugiyama&family=Federant&family=Jacques+Francois+Shadow&family=Londrina+Shadow&family=Miss+Fajardose&family=Modern+Antiqua&family=Rye&family=Ruthie&family=Stalemate&family=Underdog&family=UnifrakturCook&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Baloo+Bhai+2&family=Finger+Paint&family=Bangers:wght@900&family=Marhey&family=Rock+3D&family=Henny+Penny&family=Coiny&family=Flavors&family=Ribeye+Marrow&family=Ranga&family=Handlee&family=Sonsie+One&family=Rancho&display=swap" rel="stylesheet">
 </head>
-<link rel="stylesheet" href="https://rawcdn.githack.com/SorynMochi/soryn-code/7eb158cc7f0c4f071e4140f82ee59567d4cd63a3/tppcss.css?min=1">
-  <div id="novelApp">
+<style>    body {
+      background-color: var(--background);
+      color: var(--text);
+      transition: background-color 0.3s, color 0.3s;
+    }
+    
+    /* Apply theme to form elements */
+    input, select, textarea, button {
+      background-color: var(--input-bg);
+      color: var(--text);
+      border: 1px solid var(--input-border);
+      transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+      font-size: 12px;
+    }
+    
+    input:focus, select:focus, textarea:focus {
+      outline-color: var(--primary);
+      border-color: var(--primary);
+    }
+    
+    button {
+      cursor: pointer;
+    }
+    
+    /* Style buttons by type */
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    
+    .btn-primary:hover {
+      background-color: var(--primary-hover);
+    }
+    
+    .btn-secondary {
+      background-color: var(--secondary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    
+    .btn-secondary:hover {
+      background-color: var(--secondary-hover);
+    }
+    
+    .btn-danger {
+      background-color: var(--danger);
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    
+    .btn-danger:hover {
+      background-color: var(--danger-hover);
+    }
+    
+    /* Chapter and character items */
+    .chapter-item, .character-item, .lore-item {
+      background: var(--chapter-item-bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      transition: background-color 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .chapter-item.active, .character-item.active, .lore-item.active {
+      background: var(--active-item);
+      font-weight: bold;
+    }
+    
+    .chapter-item:hover, .character-item:hover, .lore-item:hover {
+      background: var(--hover-bg);
+    }
 
+    /* Editor specific styles */
+    #editor {
+      background: var(--editor-bg);
+      color: var(--text);
+      border-color: var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    #editor blockquote {
+      border-left: 3px solid var(--border);
+      color: var(--text-light);
+    }
+    
+    #editor pre {
+      background-color: var(--code-bg);
+      border-color: var(--border);
+    }
+    
+    #editor table td, #editor table th {
+      border-color: var(--border);
+    }
+    
+    /* Special character button styles */
+    .special-char-btn {
+      background: var(--special-char-btn);
+      border-color: var(--border);
+      color: var(--text);
+      font-size: 12px;
+    }
+    
+    .special-char-btn:hover {
+      background: var(--hover-bg);
+    }
+    
+    /* Theme toggle button */
+    .theme-toggle {
+      background: none;
+      border: none;
+      color: var(--text);
+      cursor: pointer;
+      padding: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      border-radius: 4px;
+      width: 36px;
+      height: 36px;
+    }
+    
+    .theme-toggle:hover {
+      background: var(--hover-bg);
+    }
+    
+    /* Links */
+    a {
+      color: var(--link-color);
+      transition: color 0.3s;
+    }
+    
+    /* Menu dropdown links */
+    #menuDropdown a {
+      color: var(--text);
+      border-color: var(--border);
+      transition: background-color 0.3s;
+    }
+    
+    #menuDropdown a:hover {
+      background-color: var(--hover-bg);
+    }
+    
+    /* Cyberpunk Theme Effects */
+    [data-theme="cyberpunk"] h1, 
+    [data-theme="cyberpunk"] h2,
+    [data-theme="cyberpunk"] h3,
+    [data-theme="cyberpunk"] h4,
+    [data-theme="cyberpunk"] .book-title,
+    [data-theme="cyberpunk"] button {
+      text-shadow: 0 0 5px var(--text), 0 0 10px var(--text);
+    }
+    
+    [data-theme="cyberpunk"] #editor,
+    [data-theme="cyberpunk"] .chapter-item,
+    [data-theme="cyberpunk"] .character-item,
+    [data-theme="cyberpunk"] .lore-item,
+    [data-theme="cyberpunk"] .book {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    [data-theme="cyberpunk"] #editor::before,
+    [data-theme="cyberpunk"] .chapter-item::before,
+    [data-theme="cyberpunk"] .character-item::before,
+    [data-theme="cyberpunk"] .lore-item::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--text), transparent);
+      animation: cyberpunk-scanline 3s linear infinite;
+      opacity: 0.5;
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    @keyframes cyberpunk-scanline {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(1000%); }
+    }
+    
+    [data-theme="cyberpunk"] button:hover {
+      animation: cyberpunk-glitch 0.3s linear;
+    }
+    
+    @keyframes cyberpunk-glitch {
+      0% { transform: translate(2px, 0); }
+      25% { transform: translate(-2px, 0); }
+      50% { transform: translate(2px, 0); }
+      75% { transform: translate(-2px, 0); }
+      100% { transform: translate(0, 0); }
+    }
+    
+    [data-theme="cyberpunk"] input:focus, 
+    [data-theme="cyberpunk"] select:focus, 
+    [data-theme="cyberpunk"] textarea:focus,
+    [data-theme="cyberpunk"] #editor:focus {
+      box-shadow: 0 0 10px var(--primary), 0 0 20px var(--primary);
+    }
+    
+    [data-theme="cyberpunk"] .book-cover {
+      background: linear-gradient(135deg, var(--card-bg) 0%, var(--sidebar-bg) 100%);
+      border: 1px solid var(--primary);
+      box-shadow: 0 0 15px var(--primary);
+    }
+    
+    [data-theme="cyberpunk"] .book-spine {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+    }
+    
+    /* Sci-fi Theme Effects */
+    [data-theme="scifi"] button,
+    [data-theme="scifi"] .chapter-item,
+    [data-theme="scifi"] .character-item,
+    [data-theme="scifi"] .lore-item {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    [data-theme="scifi"] button::after,
+    [data-theme="scifi"] .chapter-item::after,
+    [data-theme="scifi"] .character-item::after,
+    [data-theme="scifi"] .lore-item::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: linear-gradient(45deg, transparent 45%, rgba(139,233,253,0.1) 50%, transparent 55%);
+      background-size: 200% 200%;
+      animation: scifi-holographic 3s ease infinite;
+      pointer-events: none;
+    }
+    
+    @keyframes scifi-holographic {
+      0% { background-position: 0% 0%; }
+      50% { background-position: 100% 100%; }
+      100% { background-position: 0% 0%; }
+    }
+    
+    [data-theme="scifi"] input:focus, 
+    [data-theme="scifi"] select:focus, 
+    [data-theme="scifi"] textarea:focus,
+    [data-theme="scifi"] #editor {
+      box-shadow: 0 0 5px var(--primary), 0 0 10px var(--primary);
+    }
+    
+    [data-theme="scifi"] .book {
+      transform-style: preserve-3d;
+    }
+    
+    [data-theme="scifi"] .book-cover {
+      background: linear-gradient(135deg, var(--card-bg) 0%, var(--sidebar-bg) 100%);
+      border: 1px solid var(--primary);
+      box-shadow: 0 0 15px rgba(80, 250, 123, 0.3);
+    }
+    
+    /* Horror Theme Effects */
+    [data-theme="horror"] .chapter-item,
+    [data-theme="horror"] .character-item,
+    [data-theme="horror"] .lore-item,
+    [data-theme="horror"] h1,
+    [data-theme="horror"] h2,
+    [data-theme="horror"] h3,
+    [data-theme="horror"] button {
+      position: relative;
+    }
+    
+    [data-theme="horror"] .chapter-item::before,
+    [data-theme="horror"] .character-item::before,
+    [data-theme="horror"] .lore-item::before,
+    [data-theme="horror"] h1::before,
+    [data-theme="horror"] h2::before,
+    [data-theme="horror"] h3::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: var(--text);
+      clip-path: polygon(
+        0% 0%, 5% 100%, 10% 0%, 15% 70%, 20% 0%, 25% 100%, 30% 0%, 
+        35% 90%, 40% 0%, 45% 50%, 50% 0%, 55% 80%, 60% 0%, 65% 40%, 
+        70% 0%, 75% 60%, 80% 0%, 85% 100%, 90% 0%, 95% 70%, 100% 0%
+      );
+      z-index: 1;
+    }
+    
+    [data-theme="horror"] button,
+    [data-theme="horror"] .book-title,
+    [data-theme="horror"] h1, 
+    [data-theme="horror"] h2, 
+    [data-theme="horror"] h3 {
+      animation: horror-flicker 5s linear infinite;
+    }
+    
+    @keyframes horror-flicker {
+      0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
+        opacity: 1;
+      }
+      20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
+        opacity: 0.5;
+      }
+    }
+    
+    [data-theme="horror"] button, 
+    [data-theme="horror"] input, 
+    [data-theme="horror"] select,
+    [data-theme="horror"] .chapter-title,
+    [data-theme="horror"] .character-title,
+    [data-theme="horror"] .lore-title {
+      filter: blur(0.3px);
+      letter-spacing: 1px;
+    }
+    
+    [data-theme="horror"] #editor::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(170, 0, 0, 0.03) 0px,
+        rgba(170, 0, 0, 0.03) 1px,
+        transparent 1px,
+        transparent 2px
+      );
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    [data-theme="horror"] .book-cover {
+      background: linear-gradient(135deg, var(--card-bg) 0%, var(--sidebar-bg) 100%);
+      border: 1px solid var(--danger);
+      box-shadow: 0 0 15px rgba(170, 0, 0, 0.5);
+    }
+    
+    [data-theme="horror"] .book-cover::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to bottom, transparent 95%, rgba(170, 0, 0, 0.8) 100%);
+      pointer-events: none;
+      opacity: 0.5;
+    }
+    
+    /* Draggable items styling */
+    .chapter-item.dragging, .character-item.dragging, .lore-item.dragging {
+      opacity: 0.5;
+      border: 2px dashed var(--primary);
+    }
+    
+    .chapter-item.drop-above, .character-item.drop-above, .lore-item.drop-above {
+      border-top: 2px solid var(--primary);
+    }
+    
+    .chapter-item.drop-below, .character-item.drop-below, .lore-item.drop-below {
+      border-bottom: 2px solid var(--primary);
+    }
+    
+    .drag-handle {
+      cursor: grab;
+      color: var(--text-light);
+      margin-right: 5px;
+      user-select: none;
+    }
+    
+    .drag-handle:hover {
+      color: var(--primary);
+    }
+    
+
+    
+    /* Make sidebar scrollable but hide scrollbar */
+    #sidebar {
+      overflow-y: scroll;
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE and Edge */
+    }
+    
+    /* Hide scrollbar in WebKit browsers */
+    #sidebar::-webkit-scrollbar, html::-webkit-scrollbar {
+      display: none;
+    }
+/* Theme Variables */
+    :root {
+      /* Light theme (default) */
+      --background: #f5f5f5;
+      --text: #333333;
+      --text-light: #777777;
+      --primary: #4CAF50;
+      --primary-hover: #45a049;
+      --secondary: #2196F3;
+      --secondary-hover: #0b7dda;
+      --accent: #FF9800;
+      --accent-hover: #e68a00;
+      --danger: #f44336;
+      --danger-hover: #d32f2f;
+      --border: #dddddd;
+      --card-bg: #ffffff;
+      --sidebar-bg: #f9f9f9;
+      --toolbar-bg: #eeeeee;
+      --hover-bg: #e0e0e0;
+      --menu-bg: white;
+      --shadow: rgba(0,0,0,0.1);
+      --input-bg: white;
+      --input-border: #dddddd;
+      --editor-bg: white;
+      --active-item: #e0e0e0;
+      --chapter-item-bg: #f1f1f1;
+      --modal-overlay: rgba(0,0,0,0.7);
+      --special-char-btn: #f9f9f9;
+      --link-color: #2196F3;
+      --code-bg: #f5f5f5;
+    }
+
+    /* Dark theme */
+    [data-theme="dark"] {
+      --background: #1e1e1e;
+      --text: #e0e0e0;
+      --text-light: #aaaaaa;
+      --primary: #5cbb60;
+      --primary-hover: #4CAF50;
+      --secondary: #42a5f5;
+      --secondary-hover: #2196F3;
+      --accent: #FFA726;
+      --accent-hover: #FF9800;
+      --danger: #f44336;
+      --danger-hover: #d32f2f;
+      --border: #444444;
+      --card-bg: #2d2d2d;
+      --sidebar-bg: #252525;
+      --toolbar-bg: #333333;
+      --hover-bg: #3a3a3a;
+      --menu-bg: #2d2d2d;
+      --shadow: rgba(0,0,0,0.3);
+      --input-bg: #333333;
+      --input-border: #3a3a3a;
+      --editor-bg: #2d2d2d;
+      --active-item: #3a3a3a;
+      --chapter-item-bg: #333333;
+      --modal-overlay: rgba(0,0,0,0.8);
+      --special-char-btn: #333333;
+      --link-color: #42a5f5;
+      --code-bg: #333333;
+    }
+    
+    /* Fantasy theme - Enchanted Edition */
+    [data-theme="fantasy"] {
+      --background: #f5eedd; /* Aged parchment background */
+      --text: #2a1a12; /* Rich mahogany text */
+      --text-light: #614c3e; /* Aged oak for secondary text */
+      --primary: #7d2933; /* Royal crimson */
+      --primary-hover: #5e2027; /* Deep blood red */
+      --secondary: #3f593d; /* Forest green */
+      --secondary-hover: #2b3f2a; /* Deep forest */
+      --accent: #c39b5e; /* Metallic gold */
+      --accent-hover: #a1814e; /* Burnished gold */
+      --danger: #9b2c2c; /* Dragon red */
+      --danger-hover: #7e2222; /* Dragon blood */
+      --border: #d0bda5; /* Ancient scroll border */
+      --card-bg: #fffbf5; /* Ivory parchment */
+      --sidebar-bg: #f4eadc; /* Aged parchment */
+      --toolbar-bg: #e9dcc9; /* Weathered leather */
+      --hover-bg: #e6d8be; /* Sun-bleached parchment */
+      --menu-bg: #f4eadc; /* Scroll menu */
+      --shadow: rgba(32,22,16,0.25); /* Mystic shadow */
+      --input-bg: #fffdf9; /* Pure parchment */
+      --input-border: #d0bda5; /* Quill-marked border */
+      --editor-bg: #fffdf9; /* Writing parchment */
+      --active-item: #e6d8be; /* Selected item */
+      --chapter-item-bg: #f4eadc; /* Chapter scroll */
+      --modal-overlay: rgba(20,10,5,0.75); /* Magical veil */
+      --special-char-btn: #f4eadc; /* Rune buttons */
+      --link-color: #7d2933; /* Ink link */
+      --code-bg: #f4eadc; /* Script background */
+      
+      /* Set primary font */
+      font-family: 'Cinzel', 'EB Garamond', serif;
+      
+      /* Add fantasy-specific decorative elements */
+      background-image: 
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M54 22c0-12-18-8-18 4 0 12 18 8 18-4zM22 38c0-12-18-8-18 4 0 12 18 8 18-4zM50 50c0-6-9-4-9 2 0 6 9 4 9-2zM10 10c0-6-9-4-9 2 0 6 9 4 9-2zM30 30c0-6-9-4-9 2 0 6 9 4 9-2z' fill='%23d5c7b1' fill-opacity='0.15' fill-rule='evenodd'/%3E%3C/svg%3E"),
+        linear-gradient(0deg, rgba(245,238,221,1) 0%, rgba(245,238,221,0.97) 100%);
+      
+      /* Add subtle texture */
+      text-shadow: 1px 1px 1px rgba(0,0,0,0.05);
+      
+      /* Add a subtle vignette effect */
+      position: relative;
+    }
+    
+    /* Mystery theme - Sherlock Holmes Study */
+    [data-theme="mystery"] {
+      --background: #1a1a14; /* Victorian study dark background */
+      --text: #e8dec1; /* Aged parchment text */
+      --text-light: #b5a88a; /* Faded parchment for secondary text */
+      --primary: #73341d; /* Rich mahogany wood */
+      --primary-hover: #5c2816; /* Deeper mahogany */
+      --secondary: #2d3319; /* Dark olive green - Victorian color */
+      --secondary-hover: #1e2211; /* Deeper olive */
+      --accent: #b8860b; /* Antique brass accent */
+      --accent-hover: #96700d; /* Deeper brass */
+      --danger: #802116; /* Victorian era dark red */
+      --danger-hover: #651a11; /* Deeper red */
+      --border: #5c4827; /* Aged wood border */
+      --card-bg: #252318; /* Victorian wallpaper dark background */
+      --sidebar-bg: #1e1d16; /* Deep study sidebar */
+      --toolbar-bg: #2a241d; /* Toolbar like polished wood */
+      --hover-bg: #39301f; /* Hover like gaslamp light */
+      --menu-bg: #252318; /* Menu dropdown */
+      --shadow: rgba(0,0,0,0.65); /* Victorian gaslight shadows */
+      --input-bg: #2a241d; /* Input fields like old paper */
+      --input-border: #5c4827; /* Input borders like wood trim */
+      --editor-bg: #1e1d16; /* Editor like an old case notebook */
+      --active-item: #39301f; /* Selected item highlighted with gaslamp glow */
+      --chapter-item-bg: #2a241d; /* Chapter items like book pages */
+      --modal-overlay: rgba(0,0,0,0.85); /* London fog overlay */
+      --special-char-btn: #2a241d; /* Special character buttons */
+      --link-color: #b8860b; /* Links like brass fixtures */
+      --code-bg: #2a241d; /* Code snippets */
+      
+      /* Set primary font */
+      font-family: 'IM Fell English', 'Libre Bodoni', 'Baskervville', serif;
+      
+      /* Add Victorian wallpaper texture */
+      background-image:
+        url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%235c4827' fill-opacity='0.15'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E"),
+        radial-gradient(circle at center, rgba(42, 36, 29, 0.97) 0%, rgba(26, 26, 20, 1) 70%);
+        
+      /* Add vignette effect like gaslamp lighting */
+      position: relative;
+    }
+
+    /* Mystery theme specific decorative elements */
+    [data-theme="mystery"]::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(
+          circle at center,
+          transparent 30%,
+          rgba(0, 0, 0, 0.65) 100%
+        );
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* Sherlock Holmes decorative elements */
+    [data-theme="mystery"] h1, 
+    [data-theme="mystery"] h2,
+    [data-theme="mystery"] h3,
+    [data-theme="mystery"] h4 {
+      font-family: 'IM Fell English SC', 'Libre Bodoni', serif;
+      letter-spacing: 1px;
+      color: #b8860b;
+      position: relative;
+      text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+    }
+
+    [data-theme="mystery"] h1::before,
+    [data-theme="mystery"] h2::before,
+    [data-theme="mystery"] h3::before {
+      content: "☞"; /* Victorian era pointing hand symbol */
+      position: absolute;
+      left: -25px;
+      color: var(--accent);
+      opacity: 0.7;
+    }
+
+    [data-theme="mystery"] h1::after,
+    [data-theme="mystery"] h2::after,
+    [data-theme="mystery"] h3::after {
+      content: "";
+      position: absolute;
+      height: 1px;
+      left: 0;
+      bottom: -5px;
+      width: 100%;
+      background: linear-gradient(90deg, 
+        var(--accent) 0%, 
+        transparent 100%);
+      opacity: 0.8;
+    }
+
+    /* Mystery UI decorations */
+    [data-theme="mystery"] button {
+      border-radius: 0;
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 12px;
+      font-family: 'IM Fell English', serif;
+      background-image: linear-gradient(to bottom, 
+        rgba(0,0,0,0.1) 0%, 
+        rgba(0,0,0,0.25) 100%);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    [data-theme="mystery"] button::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg, 
+        transparent, 
+        rgba(184, 134, 11, 0.15), 
+        transparent
+      );
+      transition: left 0.7s ease;
+    }
+
+    [data-theme="mystery"] button:hover::before {
+      left: 100%;
+    }
+
+    [data-theme="mystery"] button.btn-primary,
+    [data-theme="mystery"] button.open-button,
+    [data-theme="mystery"] .book-button.open-button {
+      background-color: var(--primary);
+      color: #e8dec1;
+      border: 1px solid #8b5e34;
+    }
+
+    [data-theme="mystery"] button.btn-secondary,
+    [data-theme="mystery"] button.edit-button,
+    [data-theme="mystery"] .book-button.edit-button {
+      background-color: var(--secondary);
+      color: #e8dec1;
+      border: 1px solid #414a28;
+    }
+
+    [data-theme="mystery"] input, 
+    [data-theme="mystery"] select, 
+    [data-theme="mystery"] textarea {
+      background-color: var(--input-bg);
+      border: 1px solid var(--border);
+      border-radius: 0;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
+      color: var(--text);
+      font-family: 'IM Fell English', serif;
+      transition: all 0.3s ease;
+    }
+
+    [data-theme="mystery"] input:focus, 
+    [data-theme="mystery"] select:focus, 
+    [data-theme="mystery"] textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 5px rgba(184, 134, 11, 0.4), inset 0 1px 3px rgba(0,0,0,0.5);
+      outline: none;
+    }
+
+    /* Mystery chapter and character items */
+    [data-theme="mystery"] .chapter-item,
+    [data-theme="mystery"] .character-item,
+    [data-theme="mystery"] .lore-item {
+      background: var(--chapter-item-bg);
+      border: 1px solid var(--border);
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+      margin-bottom: 8px;
+      position: relative;
+      transition: all 0.3s ease;
+      border-radius: 0;
+    }
+
+    [data-theme="mystery"] .chapter-item::before,
+    [data-theme="mystery"] .character-item::before,
+    [data-theme="mystery"] .lore-item::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 3px;
+      background: linear-gradient(to bottom, 
+        var(--accent) 0%, 
+        transparent 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    [data-theme="mystery"] .chapter-item:hover::before,
+    [data-theme="mystery"] .character-item:hover::before,
+    [data-theme="mystery"] .lore-item:hover::before,
+    [data-theme="mystery"] .chapter-item.active::before,
+    [data-theme="mystery"] .character-item.active::before,
+    [data-theme="mystery"] .lore-item.active::before {
+      opacity: 1;
+    }
+
+    [data-theme="mystery"] .chapter-item:hover,
+    [data-theme="mystery"] .character-item:hover,
+    [data-theme="mystery"] .lore-item:hover {
+      transform: translateX(3px);
+      box-shadow: 3px 3px 7px rgba(0,0,0,0.7);
+    }
+
+    /* Mystery editor with parchment effect */
+    [data-theme="mystery"] #editor {
+      background: var(--editor-bg);
+      color: var(--text);
+      border: 1px solid var(--border);
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.7);
+      padding: 20px;
+      line-height: 1.8;
+      font-family: 'IM Fell English', serif;
+      font-size: 17px;
+      background-image: 
+        url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%235c4827' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E"),
+        linear-gradient(0deg, var(--editor-bg) 0%, rgba(36, 33, 25, 0.97) 100%);
+      position: relative;
+    }
+
+    [data-theme="mystery"] #editor::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        linear-gradient(to right, rgba(36, 33, 25, 0.1) 0%, transparent 20%, transparent 80%, rgba(36, 33, 25, 0.1) 100%),
+        linear-gradient(to bottom, rgba(36, 33, 25, 0.1) 0%, transparent 20%, transparent 80%, rgba(36, 33, 25, 0.1) 100%);
+      pointer-events: none;
+    }
+
+    [data-theme="mystery"] #editor blockquote {
+      border-left: 3px solid var(--accent);
+      background-color: rgba(42, 36, 29, 0.5);
+      padding: 15px 20px;
+      margin: 15px 0;
+      position: relative;
+      font-style: italic;
+      color: var(--text);
+    }
+
+    [data-theme="mystery"] #editor blockquote::before {
+      content: """;
+      font-family: 'Baskervville', serif;
+      font-size: 60px;
+      color: var(--accent);
+      opacity: 0.3;
+      position: absolute;
+      top: -15px;
+      left: 5px;
+    }
+
+    /* Mystery book styles with Sherlock Holmes aesthetic */
+    [data-theme="mystery"] .book {
+      perspective: 1200px;
+      transform-style: preserve-3d;
+      filter: drop-shadow(0 10px 15px rgba(0,0,0,0.7));
+    }
+
+    [data-theme="mystery"] .book-cover {
+      background: linear-gradient(45deg, 
+        #1a1a14 0%, 
+        #252318 40%, 
+        #39301f 60%, 
+        #252318 80%, 
+        #1a1a14 100%);
+      box-shadow: 0 0 20px rgba(0,0,0,0.7);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #5c4827;
+    }
+
+    [data-theme="mystery"] .book-cover::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%235c4827' fill-opacity='0.2'%3E%3Cpath d='M5 0h1L0 5v1H5V0zm1 5v1H5v-1H0v-1h6V5z'/%3E%3C/g%3E%3C/svg%3E"),
+        repeating-linear-gradient(
+          -45deg,
+          transparent,
+          transparent 2px,
+          rgba(184, 134, 11, 0.05) 2px,
+          rgba(184, 134, 11, 0.05) 4px
+        );
+      pointer-events: none;
+    }
+
+    [data-theme="mystery"] .book-spine {
+      background: linear-gradient(to right, 
+        #1a1a14 0%, 
+        #73341d 30%, 
+        #b8860b 50%, 
+        #73341d 70%, 
+        #1a1a14 100%);
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+    }
+
+    [data-theme="mystery"] .book-page {
+      background: rgba(232, 222, 193, 0.05);
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.6);
+    }
+
+    [data-theme="mystery"] .book-title {
+      font-family: 'IM Fell English SC', serif;
+      color: var(--text);
+      letter-spacing: 1px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+    }
+
+    /* Add Victorian-era stamp effect */
+    [data-theme="mystery"] .book-cover::before {
+      content: "";
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      bottom: 20px;
+      right: 20px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 0C13.432 0 0 13.432 0 30s13.432 30 30 30 30-13.432 30-30S46.568 0 30 0zm0 5c13.807 0 25 11.193 25 25S43.807 55 30 55 5 43.807 5 30 16.193 5 30 5zm0 5c-11.046 0-20 8.954-20 20s8.954 20 20 20 20-8.954 20-20S41.046 10 30 10z' fill='%23b8860b' fill-opacity='0.2'/%3E%3C/svg%3E");
+      opacity: 0.4;
+      transform: rotate(-15deg);
+    }
+
+    /* Add magnifying glass icon for search-like elements */
+    [data-theme="mystery"] input[type="search"],
+    [data-theme="mystery"] input[type="text"] {
+      background-position: 5px center;
+      background-repeat: no-repeat;
+      padding-left: 25px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24'%3E%3Cpath d='M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z' fill='%23b8860b' fill-opacity='0.5'/%3E%3C/svg%3E");
+    }
+
+    /* Add fog effects to borders */
+    [data-theme="mystery"] .sidebar-bg,
+    [data-theme="mystery"] .card-bg,
+    [data-theme="mystery"] .toolbar-bg {
+      position: relative;
+      overflow: hidden;
+    }
+
+    [data-theme="mystery"] .sidebar-bg::after,
+    [data-theme="mystery"] .card-bg::after,
+    [data-theme="mystery"] .toolbar-bg::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to bottom, 
+        rgba(26, 26, 20, 0.4) 0%, 
+        transparent 20%, 
+        transparent 80%, 
+        rgba(26, 26, 20, 0.4) 100%);
+      pointer-events: none;
+    }
+
+    /* Add pipe icon to bullet points */
+    [data-theme="mystery"] ul li::marker {
+      content: "🔍 ";
+      font-size: 0.8em;
+    }
+    
+    /* Suspense theme - Edge of Tension */
+    [data-theme="suspense"] {
+      --background: #080808; /* Deep dark background */
+      --text: #f0f0f0; /* Stark white text */
+      --text-light: #a02c2c; /* Dull red for secondary text */
+      --primary: #d91f1f; /* Intense red */
+      --primary-hover: #b21919; /* Darker red */
+      --secondary: #2a2a2a; /* Dark grey */
+      --secondary-hover: #1f1f1f; /* Deeper grey */
+      --accent: #f7d100; /* Warning yellow */
+      --accent-hover: #d9bc00; /* Darker yellow */
+      --danger: #ff0d0d; /* Bright danger red */
+      --danger-hover: #cc0000; /* Deeper danger */
+      --border: #2f2f2f; /* Dark borders */
+      --card-bg: #131313; /* Very dark cards */
+      --sidebar-bg: #0a0a0a; /* Nearly black sidebar */
+      --toolbar-bg: #1a1a1a; /* Dark toolbar */
+      --hover-bg: #202020; /* Slightly lighter for hover */
+      --menu-bg: #131313; /* Dark menus */
+      --shadow: rgba(0,0,0,0.8); /* Deep shadows */
+      --input-bg: #1a1a1a; /* Dark inputs */
+      --input-border: #2f2f2f; /* Dark borders */
+      --editor-bg: #0a0a0a; /* Dark editor */
+      --active-item: #202020; /* Selected items */
+      --chapter-item-bg: #1a1a1a; /* Chapter items */
+      --modal-overlay: rgba(0,0,0,0.9); /* Very dark overlay */
+      --special-char-btn: #1a1a1a; /* Dark buttons */
+      --link-color: #d91f1f; /* Red links */
+      --code-bg: #1a1a1a; /* Dark code */
+      
+      /* Set primary font */
+      font-family: 'Carrois Gothic SC', 'Barlow', sans-serif;
+      
+      /* Add suspense-specific texture */
+      background-image:
+        url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23222222' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 5v1H5V0zm1 5v1H5v-1H0v-1h6V5z'/%3E%3C/g%3E%3C/svg%3E"),
+        linear-gradient(to bottom, rgba(8,8,8,1) 0%, rgba(15,15,15,1) 100%);
+    }
+    
+    /* Suspense theme specific decorative elements */
+    [data-theme="suspense"]::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        linear-gradient(90deg, 
+          rgba(0,0,0,0.3) 0%, 
+          transparent 20%, 
+          transparent 80%, 
+          rgba(0,0,0,0.3) 100%);
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    [data-theme="suspense"] h1, 
+    [data-theme="suspense"] h2,
+    [data-theme="suspense"] h3,
+    [data-theme="suspense"] h4 {
+      font-family: 'Barlow', sans-serif;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--primary);
+      position: relative;
+    }
+    
+    [data-theme="suspense"] h1::after,
+    [data-theme="suspense"] h2::after,
+    [data-theme="suspense"] h3::after {
+      content: "";
+      position: absolute;
+      height: 2px;
+      left: 0;
+      bottom: -5px;
+      width: 100%;
+      background: linear-gradient(90deg, 
+        var(--primary) 0%, 
+        transparent 100%);
+      transform-origin: left center;
+      animation: suspense-line-width 5s ease infinite;
+    }
+    
+    @keyframes suspense-line-width {
+      0% { transform: scaleX(1); }
+      50% { transform: scaleX(0.7); }
+      100% { transform: scaleX(1); }
+    }
+    
+    /* Suspense UI decorations */
+    [data-theme="suspense"] button {
+      border-radius: 0;
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 12px;
+      background-image: linear-gradient(to bottom, 
+        rgba(0,0,0,0.1) 0%, 
+        rgba(0,0,0,0.2) 100%);
+      clip-path: polygon(
+        0 0, 
+        100% 0, 
+        100% calc(100% - 5px), 
+        calc(100% - 5px) 100%, 
+        0 100%
+      );
+    }
+    
+    [data-theme="suspense"] button::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background-color: var(--primary);
+      transition: transform 0.3s ease;
+      transform: translateX(-4px);
+    }
+    
+    [data-theme="suspense"] button:hover::after {
+      transform: translateX(0);
+    }
+    
+    [data-theme="suspense"] button.btn-primary,
+    [data-theme="suspense"] button.open-button,
+    [data-theme="suspense"] .book-button.open-button {
+      background-color: var(--primary);
+      color: var(--text);
+    }
+    
+    [data-theme="suspense"] button.btn-secondary,
+    [data-theme="suspense"] button.edit-button,
+    [data-theme="suspense"] .book-button.edit-button {
+      background-color: var(--secondary);
+      color: var(--text);
+    }
+    
+    [data-theme="suspense"] input, 
+    [data-theme="suspense"] select, 
+    [data-theme="suspense"] textarea {
+      background-color: var(--input-bg);
+      border: none;
+      border-bottom: 1px solid var(--border);
+      border-left: 4px solid var(--primary);
+      border-radius: 0;
+      box-shadow: inset 0 0 4px rgba(0,0,0,0.5);
+      color: var(--text);
+      font-family: 'Barlow', sans-serif;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      padding-left: 10px;
+    }
+    
+    [data-theme="suspense"] input:focus, 
+    [data-theme="suspense"] select:focus, 
+    [data-theme="suspense"] textarea:focus {
+      border-color: var(--primary);
+      border-bottom-color: var(--primary);
+      box-shadow: 0 0 5px rgba(217, 31, 31, 0.2), inset 0 0 4px rgba(0,0,0,0.5);
+      outline: none;
+    }
+    
+    /* Suspense chapter and character items */
+    [data-theme="suspense"] .chapter-item,
+    [data-theme="suspense"] .character-item,
+    [data-theme="suspense"] .lore-item {
+      background: var(--chapter-item-bg);
+      border: none;
+      border-left: 4px solid var(--secondary);
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+      margin-bottom: 8px;
+      position: relative;
+      transition: all 0.3s ease;
+      border-radius: 0;
+      clip-path: polygon(
+        0 0, 
+        100% 0, 
+        100% calc(100% - 8px), 
+        calc(100% - 8px) 100%, 
+        0 100%
+      );
+    }
+    
+    [data-theme="suspense"] .chapter-item::after,
+    [data-theme="suspense"] .character-item::after,
+    [data-theme="suspense"] .lore-item::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      border-style: solid;
+      border-width: 0 0 8px 8px;
+      border-color: transparent transparent var(--primary) transparent;
+      transition: all 0.3s ease;
+      opacity: 0;
+    }
+    
+    [data-theme="suspense"] .chapter-item:hover::after,
+    [data-theme="suspense"] .character-item:hover::after,
+    [data-theme="suspense"] .lore-item:hover::after,
+    [data-theme="suspense"] .chapter-item.active::after,
+    [data-theme="suspense"] .character-item.active::after,
+    [data-theme="suspense"] .lore-item.active::after {
+      opacity: 1;
+    }
+    
+    [data-theme="suspense"] .chapter-item:hover,
+    [data-theme="suspense"] .character-item:hover,
+    [data-theme="suspense"] .lore-item:hover {
+      transform: translateX(3px);
+      border-left-color: var(--primary);
+    }
+    
+    [data-theme="suspense"] .chapter-item.active,
+    [data-theme="suspense"] .character-item.active,
+    [data-theme="suspense"] .lore-item.active {
+      border-left-color: var(--primary);
+    }
+    
+    /* Suspense editor */
+    [data-theme="suspense"] #editor {
+      background-color: var(--editor-bg);
+      color: var(--text);
+      border: none;
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.7);
+      padding: 25px;
+      line-height: 1.7;
+      font-family: 'Barlow', sans-serif;
+      font-size: 17px;
+      position: relative;
+      letter-spacing: 0.3px;
+    }
+    
+    [data-theme="suspense"] #editor::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(to right, 
+        var(--primary) 0%, 
+        transparent 100%);
+    }
+    
+    [data-theme="suspense"] #editor::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(to left, 
+        var(--primary) 0%, 
+        transparent 100%);
+    }
+    
+    /* Add a ticking cursor effect for suspense */
+    [data-theme="suspense"] #editor:focus::after {
+      content: "";
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 10px;
+      height: 10px;
+      background-color: var(--primary);
+      animation: suspense-ticker 1s infinite;
+    }
+    
+    @keyframes suspense-ticker {
+      0%, 100% { opacity: 0; }
+      50% { opacity: 1; }
+    }
+    
+    [data-theme="suspense"] #editor blockquote {
+      border-left: 3px solid var(--primary);
+      background-color: rgba(26, 26, 26, 0.5);
+      padding: 15px 20px;
+      margin: 15px 0;
+      position: relative;
+      font-style: italic;
+      color: var(--text);
+      clip-path: polygon(
+        0 0, 
+        100% 0, 
+        100% calc(100% - 10px), 
+        calc(100% - 10px) 100%, 
+        0 100%
+      );
+    }
+    
+    /* Suspense book styles */
+    [data-theme="suspense"] .book {
+      perspective: 1200px;
+      transform-style: preserve-3d;
+      filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+    }
+    
+    [data-theme="suspense"] .book-cover {
+      background: linear-gradient(45deg, 
+        #080808 0%, 
+        #131313 40%, 
+        #202020 60%, 
+        #131313 80%, 
+        #080808 100%);
+      box-shadow: 0 0 20px rgba(0,0,0,0.7);
+      clip-path: polygon(
+        0 0, 
+        100% 0, 
+        100% calc(100% - 15px), 
+        calc(100% - 15px) 100%, 
+        0 100%
+      );
+      border-left: 2px solid var(--primary);
+    }
+    
+    [data-theme="suspense"] .book-spine {
+      background: linear-gradient(to right, 
+        #080808 0%, 
+        var(--primary) 50%, 
+        #080808 100%);
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+    }
+    
+    /* Gothic theme - Haunted Elegance */
+    [data-theme="gothic"] {
+      --background: #1a0f17; /* Deep purple-black */
+      --text: #d9c5c1; /* Faded rose */
+      --text-light: #8c7d86; /* Muted purple */
+      --primary: #6e0823; /* Deep blood red */
+      --primary-hover: #560a1d; /* Darker blood red */
+      --secondary: #330a24; /* Dark purple */
+      --secondary-hover: #26061a; /* Deeper purple */
+      --accent: #aa8d67; /* Aged gold */
+      --accent-hover: #8c7250; /* Darker gold */
+      --danger: #92181f; /* Deep crimson */
+      --danger-hover: #7a1119; /* Darker crimson */
+      --border: #45253c; /* Dark purple border */
+      --card-bg: #231521; /* Dark purple card */
+      --sidebar-bg: #170b13; /* Very dark purple sidebar */
+      --toolbar-bg: #2c1925; /* Dark purple toolbar */
+      --hover-bg: #3a1f31; /* Slightly lighter for hover */
+      --menu-bg: #231521; /* Dark menus */
+      --shadow: rgba(0,0,0,0.7); /* Deep shadows */
+      --input-bg: #2c1925; /* Dark inputs */
+      --input-border: #45253c; /* Dark borders */
+      --editor-bg: #170b13; /* Dark editor */
+      --active-item: #3a1f31; /* Selected items */
+      --chapter-item-bg: #2c1925; /* Chapter items */
+      --modal-overlay: rgba(10,0,10,0.9); /* Very dark overlay */
+      --special-char-btn: #2c1925; /* Dark buttons */
+      --link-color: #aa8d67; /* Gold links */
+      --code-bg: #2c1925; /* Dark code */
+      
+      /* Set primary font */
+      font-family: 'IM Fell English', 'Baskervville', serif;
+      
+      /* Add gothic-specific texture */
+      background-image:
+        url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23330a24' fill-opacity='0.15'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E"),
+        radial-gradient(circle at center, rgba(35, 21, 33, 0.95) 0%, rgba(26, 15, 23, 1) 70%);
+    }
+    
+    /* Gothic theme specific decorative elements */
+    [data-theme="gothic"]::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(
+          circle at center,
+          transparent 80%,
+          rgba(0, 0, 0, 0.7) 100%
+        );
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    [data-theme="gothic"] h1, 
+    [data-theme="gothic"] h2,
+    [data-theme="gothic"] h3,
+    [data-theme="gothic"] h4 {
+      font-family: 'IM Fell English SC', 'UnifrakturMaguntia', serif;
+      letter-spacing: 1px;
+      color: var(--accent);
+      position: relative;
+    }
+    
+    /* Add ornamental decoration to headings */
+    [data-theme="gothic"] h1::before,
+    [data-theme="gothic"] h2::before,
+    [data-theme="gothic"] h3::before {
+      content: "❦";
+      position: absolute;
+      left: -25px;
+      color: var(--primary);
+      opacity: 0.5;
+    }
+    
+    [data-theme="gothic"] h1::after,
+    [data-theme="gothic"] h2::after,
+    [data-theme="gothic"] h3::after {
+      content: "❦";
+      position: absolute;
+      right: -25px;
+      top: 0;
+      color: var(--primary);
+      opacity: 0.5;
+    }
+    
+    /* Gothic UI decorations */
+    [data-theme="gothic"] button {
+      border-radius: 0;
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      font-family: 'IM Fell English', serif;
+      background-image: linear-gradient(to bottom, 
+        rgba(0,0,0,0.1) 0%, 
+        rgba(0,0,0,0.3) 100%);
+    }
+    
+    [data-theme="gothic"] button::before,
+    [data-theme="gothic"] button::after {
+      content: "•";
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--accent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    [data-theme="gothic"] button::before {
+      left: 5px;
+    }
+    
+    [data-theme="gothic"] button::after {
+      right: 5px;
+    }
+    
+    [data-theme="gothic"] button:hover::before,
+    [data-theme="gothic"] button:hover::after {
+      opacity: 1;
+    }
+    
+    [data-theme="gothic"] button.btn-primary,
+    [data-theme="gothic"] button.open-button,
+    [data-theme="gothic"] .book-button.open-button {
+      background-color: var(--primary);
+      color: var(--text);
+    }
+    
+    [data-theme="gothic"] button.btn-secondary,
+    [data-theme="gothic"] button.edit-button,
+    [data-theme="gothic"] .book-button.edit-button {
+      background-color: var(--secondary);
+      color: var(--text);
+    }
+    
+    [data-theme="gothic"] input, 
+    [data-theme="gothic"] select, 
+    [data-theme="gothic"] textarea {
+      background-color: var(--input-bg);
+      border: 1px solid var(--border);
+      border-radius: 0;
+      box-shadow: inset 0 3px 5px rgba(0,0,0,0.5);
+      color: var(--text);
+      font-family: 'IM Fell English', serif;
+      transition: all 0.3s ease;
+    }
+    
+    [data-theme="gothic"] input:focus, 
+    [data-theme="gothic"] select:focus, 
+    [data-theme="gothic"] textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 5px rgba(170, 141, 103, 0.3), inset 0 3px 5px rgba(0,0,0,0.5);
+      outline: none;
+    }
+    
+    /* Gothic chapter and character items */
+    [data-theme="gothic"] .chapter-item,
+    [data-theme="gothic"] .character-item,
+    [data-theme="gothic"] .lore-item {
+      background: var(--chapter-item-bg);
+      border: 1px solid var(--border);
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+      margin-bottom: 10px;
+      position: relative;
+      transition: all 0.3s ease;
+      border-radius: 0;
+      padding: 12px 10px;
+    }
+    
+    /* Add ornamental corners */
+    [data-theme="gothic"] .chapter-item::before,
+    [data-theme="gothic"] .chapter-item::after,
+    [data-theme="gothic"] .character-item::before,
+    [data-theme="gothic"] .character-item::after,
+    [data-theme="gothic"] .lore-item::before,
+    [data-theme="gothic"] .lore-item::after {
+      content: "";
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border: 1px solid var(--accent);
+      opacity: 0.5;
+      transition: all 0.3s ease;
+    }
+    
+    [data-theme="gothic"] .chapter-item::before,
+    [data-theme="gothic"] .character-item::before,
+    [data-theme="gothic"] .lore-item::before {
+      top: 3px;
+      left: 3px;
+      border-right: none;
+      border-bottom: none;
+    }
+    
+    [data-theme="gothic"] .chapter-item::after,
+    [data-theme="gothic"] .character-item::after,
+    [data-theme="gothic"] .lore-item::after {
+      top: 3px;
+      right: 3px;
+      border-left: none;
+      border-bottom: none;
+    }
+    
+    [data-theme="gothic"] .chapter-item:hover::before,
+    [data-theme="gothic"] .chapter-item:hover::after,
+    [data-theme="gothic"] .character-item:hover::before,
+    [data-theme="gothic"] .character-item:hover::after,
+    [data-theme="gothic"] .lore-item:hover::before,
+    [data-theme="gothic"] .lore-item:hover::after,
+    [data-theme="gothic"] .chapter-item.active::before,
+    [data-theme="gothic"] .chapter-item.active::after,
+    [data-theme="gothic"] .character-item.active::before,
+    [data-theme="gothic"] .character-item.active::after,
+    [data-theme="gothic"] .lore-item.active::before,
+    [data-theme="gothic"] .lore-item.active::after {
+      opacity: 1;
+      width: 12px;
+      height: 12px;
+    }
+    
+    [data-theme="gothic"] .chapter-item:hover,
+    [data-theme="gothic"] .character-item:hover,
+    [data-theme="gothic"] .lore-item:hover {
+      background-color: var(--hover-bg);
+      border-color: var(--accent);
+    }
+    
+    /* Gothic editor */
+    [data-theme="gothic"] #editor {
+      background: var(--editor-bg);
+      color: var(--text);
+      border: 1px solid var(--border);
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.7);
+      padding: 25px;
+      line-height: 1.8;
+      font-family: 'IM Fell English', serif;
+      font-size: 17px;
+      position: relative;
+      background-image: 
+        url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23330a24' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E"),
+        linear-gradient(0deg, var(--editor-bg) 0%, rgba(26, 15, 23, 0.95) 100%);
+    }
+    
+    /* Add fancy ornamental border to editor */
+    [data-theme="gothic"] #editor::before {
+      content: "";
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      bottom: 10px;
+      left: 10px;
+      border: 1px solid var(--accent);
+      opacity: 0.2;
+      pointer-events: none;
+    }
+    
+    [data-theme="gothic"] #editor blockquote {
+      border-left: 3px solid var(--accent);
+      background-color: rgba(26, 15, 23, 0.7);
+      padding: 15px 20px 15px 40px;
+      margin: 15px 0;
+      position: relative;
+      font-style: italic;
+      color: var(--text);
+    }
+    
+    [data-theme="gothic"] #editor blockquote::before {
+      content: """;
+      font-family: 'IM Fell English', serif;
+      font-size: 60px;
+      color: var(--primary);
+      opacity: 0.5;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+    
+    /* Gothic book styles */
+    [data-theme="gothic"] .book {
+      perspective: 1200px;
+      transform-style: preserve-3d;
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.7));
+    }
+    
+    [data-theme="gothic"] .book-cover {
+      background: linear-gradient(135deg, 
+        #1a0f17 0%, 
+        #231521 40%, 
+        #3a1f31 60%, 
+        #231521 80%, 
+        #1a0f17 100%);
+      border: 1px solid var(--accent);
+      box-shadow: 0 0 20px rgba(0,0,0,0.7);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* Add gothic ornamental design to book cover */
+    [data-theme="gothic"] .book-cover::before {
+      content: "";
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      bottom: 10px;
+      left: 10px;
+      border: 1px solid var(--accent);
+      opacity: 0.3;
+      pointer-events: none;
+    }
+    
+    [data-theme="gothic"] .book-cover::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23330a24' fill-opacity='0.1'%3E%3Cpath d='M0 0h80v80H0V0zm20 20v40h40V20H20zm20 35a15 15 0 1 1 0-30 15 15 0 0 1 0 30z' /%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    
+    [data-theme="gothic"] .book-spine {
+      background: linear-gradient(to right, 
+        #1a0f17 0%, 
+        #6e0823 30%, 
+        #aa8d67 50%, 
+        #6e0823 70%, 
+        #1a0f17 100%);
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+    }
+    
+    [data-theme="gothic"] .book-page {
+      background: rgba(217, 197, 193, 0.03);
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.7);
+      border: 1px solid rgba(110, 8, 35, 0.2);
+    }
+    
+    [data-theme="gothic"] .book-title {
+      font-family: 'IM Fell English SC', serif;
+      color: var(--text);
+      letter-spacing: 1px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+    }
+    
+    [data-theme="gothic"] .book-author {
+      font-family: 'IM Fell English', serif;
+      font-style: italic;
+      color: var(--text-light);
+    }
+    
+    /* Special effects */
+    @keyframes gothic-flicker {
+      0%, 100% { opacity: 0.9; }
+      50% { opacity: 1; }
+    }
+    
+    [data-theme="gothic"] .book:hover .book-cover {
+      animation: gothic-flicker 4s infinite;
+    }
+    
+    /* Underwater theme - Coral Reef */
+    [data-theme="underwater"] {
+      --background: #053047; /* Deep ocean blue background */
+      --text: #e0f7ff; /* Light blue text like water surface */
+      --text-light: #8fcbd9; /* Lighter blue for secondary text */
+      --primary: #ff7f50; /* Coral orange */
+      --primary-hover: #ff6347; /* Deeper coral */
+      --secondary: #20b2aa; /* Teal like sea plants */
+      --secondary-hover: #00868f; /* Deeper teal */
+      --accent: #ffdb58; /* Yellow like tropical fish */
+      --accent-hover: #ffd700; /* Brighter yellow */
+      --danger: #ff4f4f; /* Red anemone */
+      --danger-hover: #e64242; /* Deeper red */
+      --border: #64c5e3; /* Light blue border like water surface */
+      --card-bg: #0c4863; /* Slightly lighter blue than main background */
+      --sidebar-bg: #042638; /* Darker blue sidebar like deep water */
+      --toolbar-bg: #0a3c56; /* Dark blue toolbar */
+      --hover-bg: #155372; /* Slightly lighter for hover */
+      --menu-bg: #0c4863; /* Menu dropdown */
+      --shadow: rgba(0,0,0,0.5); /* Deep ocean shadows */
+      --input-bg: #0a3c56; /* Input fields */
+      --input-border: #64c5e3; /* Input borders */
+      --editor-bg: #042638; /* Editor like deep water */
+      --active-item: #155372; /* Selected item */
+      --chapter-item-bg: #0a3c56; /* Chapter items */
+      --modal-overlay: rgba(2,39,58,0.85); /* Deep water overlay */
+      --special-char-btn: #0a3c56; /* Special character buttons */
+      --link-color: #64c5e3; /* Links like water surface */
+      --code-bg: #0a3c56; /* Code snippets */
+      
+      /* Set primary font */
+      font-family: 'Quicksand', 'Comfortaa', sans-serif;
+      
+      /* Add underwater-specific texture */
+      background-image:
+        url("data:image/svg+xml,%3Csvg width='100' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M21.184 20c.357-.13.72-.264 1.088-.402l1.768-.661C33.64 15.347 39.647 14 50 14c10.271 0 15.362 1.222 24.629 4.928.955.383 1.869.74 2.75 1.072h6.225c-2.51-.73-5.139-1.691-8.233-2.928C65.888 13.278 60.562 12 50 12c-10.626 0-16.855 1.397-26.66 5.063l-1.767.662c-2.475.923-4.66 1.674-6.724 2.275h6.335zm0-20C13.258 2.892 8.077 4 0 4V2c5.744 0 9.951-.574 14.85-2h6.334zM77.38 0C85.239 2.966 90.502 4 100 4V2c-6.842 0-11.386-.542-16.396-2h-6.225zM0 14c8.44 0 13.718-1.21 22.272-4.402l1.768-.661C33.64 5.347 39.647 4 50 4c10.271 0 15.362 1.222 24.629 4.928C84.112 12.722 89.438 14 100 14v-2c-10.271 0-15.362-1.222-24.629-4.928C65.888 3.278 60.562 2 50 2 39.374 2 33.145 3.397 23.34 7.063l-1.767.662C13.223 10.84 8.163 12 0 12v2z' fill='%23136a99' fill-opacity='0.2' fill-rule='evenodd'/%3E%3C/svg%3E"),
+        radial-gradient(ellipse at center, rgba(8, 57, 82, 0.8) 0%, rgba(5, 48, 71, 1) 100%);
+      
+      /* Add underwater effect with bubbles */
+      position: relative;
+    }
+    
+    /* Underwater theme specific decorative elements */
+    [data-theme="underwater"]::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(
+          circle at 10% 20%,
+          rgba(100, 197, 227, 0.2) 0%,
+          transparent 45%
+        ),
+        radial-gradient(
+          circle at 90% 85%,
+          rgba(32, 178, 170, 0.25) 0%,
+          transparent 40%
+        );
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    /* Add bubbles animation effect */
+    [data-theme="underwater"]::after {
+      content: "";
+      position: fixed;
+      top: 100%;
+      left: 0;
+      right: 0;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.15) 45%, rgba(255, 255, 255, 0) 50%),
+        radial-gradient(circle at 40% 70%, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.15) 35%, rgba(255, 255, 255, 0) 40%),
+        radial-gradient(circle at 60% 90%, rgba(255, 255, 255, 0.13) 0%, rgba(255, 255, 255, 0.15) 25%, rgba(255, 255, 255, 0) 30%),
+        radial-gradient(circle at 80% 75%, rgba(255, 255, 255, 0.11) 0%, rgba(255, 255, 255, 0.15) 30%, rgba(255, 255, 255, 0) 35%);
+      background-size: 120px 120px, 90px 90px, 60px 60px, 40px 40px;
+      background-repeat: repeat-x;
+      animation: underwater-bubbles 20s linear infinite;
+      opacity: 0.5;
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    @keyframes underwater-bubbles {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-100%); }
+    }
+    
+    [data-theme="underwater"] h1, 
+    [data-theme="underwater"] h2,
+    [data-theme="underwater"] h3,
+    [data-theme="underwater"] h4 {
+      font-family: 'Quicksand', 'Comfortaa', sans-serif;
+      color: var(--accent);
+      position: relative;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      letter-spacing: 1px;
+    }
+    
+    [data-theme="underwater"] h1::after,
+    [data-theme="underwater"] h2::after,
+    [data-theme="underwater"] h3::after {
+      content: "";
+      position: absolute;
+      height: 2px;
+      left: 0;
+      bottom: -5px;
+      width: 100%;
+      background: linear-gradient(90deg, 
+        var(--primary) 0%, 
+        var(--secondary) 50%, 
+        transparent 100%);
+      opacity: 0.8;
+      animation: underwater-wave 4s ease-in-out infinite;
+    }
+    
+    @keyframes underwater-wave {
+      0%, 100% { transform: translateX(0) scaleX(1); }
+      50% { transform: translateX(10px) scaleX(0.95); }
+    }
+    
+    /* Underwater UI decorations */
+    [data-theme="underwater"] button {
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      background-image: linear-gradient(to bottom, 
+        rgba(255,255,255,0.1) 0%, 
+        rgba(0,0,0,0.1) 100%);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    
+    /* Add ripple effect to buttons */
+    [data-theme="underwater"] button::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 250%;
+      height: 250%;
+      background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0;
+      transition: transform 0.8s ease, opacity 0.8s ease;
+      pointer-events: none;
+    }
+    
+    [data-theme="underwater"] button:hover::before {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+    
+    [data-theme="underwater"] button.btn-primary,
+    [data-theme="underwater"] button.open-button,
+    [data-theme="underwater"] .book-button.open-button {
+      background-color: var(--primary);
+      color: white;
+    }
+    
+    [data-theme="underwater"] button.btn-secondary,
+    [data-theme="underwater"] button.edit-button,
+    [data-theme="underwater"] .book-button.edit-button {
+      background-color: var(--secondary);
+      color: white;
+    }
+    
+    [data-theme="underwater"] input, 
+    [data-theme="underwater"] select, 
+    [data-theme="underwater"] textarea {
+      background-color: var(--input-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+      color: var(--text);
+      font-family: 'Quicksand', sans-serif;
+      transition: all 0.3s ease;
+    }
+    
+    [data-theme="underwater"] input:focus, 
+    [data-theme="underwater"] select:focus, 
+    [data-theme="underwater"] textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 8px rgba(100, 197, 227, 0.6), inset 0 2px 5px rgba(0,0,0,0.2);
+      outline: none;
+    }
+    
+    /* Underwater chapter and character items */
+    [data-theme="underwater"] .chapter-item,
+    [data-theme="underwater"] .character-item,
+    [data-theme="underwater"] .lore-item {
+      background: var(--chapter-item-bg);
+      border: 1px solid var(--border);
+      box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+      margin-bottom: 8px;
+      position: relative;
+      transition: all 0.3s ease;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    
+    /* Add wave effect to chapter items */
+    [data-theme="underwater"] .chapter-item::before,
+    [data-theme="underwater"] .character-item::before,
+    [data-theme="underwater"] .lore-item::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      transform: translateX(-100%);
+      animation: underwater-shine 4s infinite;
+      pointer-events: none;
+    }
+    
+    @keyframes underwater-shine {
+      0% { transform: translateX(-100%); }
+      20%, 100% { transform: translateX(100%); }
+    }
+    
+    [data-theme="underwater"] .chapter-item:hover,
+    [data-theme="underwater"] .character-item:hover,
+    [data-theme="underwater"] .lore-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 12px rgba(0,0,0,0.4);
+      border-color: var(--accent);
+    }
+    
+    [data-theme="underwater"] .chapter-item.active,
+    [data-theme="underwater"] .character-item.active,
+    [data-theme="underwater"] .lore-item.active {
+      border-color: var(--primary);
+      background-color: var(--active-item);
+    }
+    
+    /* Underwater editor */
+    [data-theme="underwater"] #editor {
+      background: var(--editor-bg);
+      color: var(--text);
+      border: 1px solid var(--border);
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.3);
+      padding: 25px;
+      line-height: 1.7;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 17px;
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    
+    /* Add underwater reflections to editor */
+    [data-theme="underwater"] #editor::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        linear-gradient(135deg, rgba(100, 197, 227, 0.05) 0%, transparent 50%),
+        linear-gradient(225deg, rgba(32, 178, 170, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    
+    /* Add underwater lighting effect */
+    [data-theme="underwater"] #editor::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(ellipse at top, rgba(100, 197, 227, 0.1) 0%, transparent 70%);
+      animation: underwater-light 10s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+    
+    @keyframes underwater-light {
+      0%, 100% { transform: translate(-30%, -30%); }
+      50% { transform: translate(10%, 10%); }
+    }
+    
+    [data-theme="underwater"] #editor blockquote {
+      border-left: 3px solid var(--primary);
+      background-color: rgba(10, 60, 86, 0.5);
+      padding: 15px 20px;
+      margin: 15px 0;
+      position: relative;
+      font-style: italic;
+      color: var(--text);
+      border-radius: 0 8px 8px 0;
+    }
+    
+    [data-theme="underwater"] #editor blockquote::before {
+      content: """;
+      font-family: 'Georgia', serif;
+      font-size: 60px;
+      color: var(--primary);
+      opacity: 0.3;
+      position: absolute;
+      top: -15px;
+      left: 5px;
+    }
+    
+    /* Underwater book styles */
+    [data-theme="underwater"] .book {
+      perspective: 1200px;
+      transform-style: preserve-3d;
+      filter: drop-shadow(0 10px 15px rgba(0,0,0,0.4));
+    }
+    
+    [data-theme="underwater"] .book-cover {
+      background: linear-gradient(45deg, 
+        #042638 0%, 
+        #0c4863 40%, 
+        #155372 60%, 
+        #0c4863 80%, 
+        #042638 100%);
+      border-radius: 8px 12px 12px 8px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* Add coral reef pattern to book cover */
+    [data-theme="underwater"] .book-cover::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%2320b2aa' fill-opacity='0.12'%3E%3Cpath d='M0,0 Q5,10 0,20 Q5,30 0,40 Q5,50 0,60 Q5,70 0,80 Q5,90 0,100' stroke='%2320b2aa' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+      opacity: 0.7;
+      pointer-events: none;
+    }
+    
+    /* Add shimmer effects */
+    [data-theme="underwater"] .book-cover::after {
+      content: "";
+      position: absolute;
+      top: -150%;
+      left: -50%;
+      width: 200%;
+      height: 300%;
+      background: linear-gradient(
+        rgba(255, 255, 255, 0),
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0)
+      );
+      transform: rotate(30deg);
+      animation: underwater-shimmer 7s ease-in-out infinite;
+      pointer-events: none;
+    }
+    
+    @keyframes underwater-shimmer {
+      0% { transform: rotate(30deg) translateY(0%); opacity: 0; }
+      25% { opacity: 0.2; }
+      50% { transform: rotate(30deg) translateY(-30%); opacity: 0; }
+      100% { transform: rotate(30deg) translateY(-60%); opacity: 0; }
+    }
+    
+    [data-theme="underwater"] .book-spine {
+      background: linear-gradient(to right, 
+        #042638 0%, 
+        var(--primary) 30%, 
+        var(--secondary) 50%, 
+        var(--primary) 70%, 
+        #042638 100%);
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+    }
+    
+    [data-theme="underwater"] .book-page {
+      background: rgba(224, 247, 255, 0.05);
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.3);
+      border-radius: 0 8px 8px 0;
+    }
+    
+    [data-theme="underwater"] .book-title {
+      font-family: 'Quicksand', 'Comfortaa', sans-serif;
+      color: var(--text);
+      letter-spacing: 1px;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+    
+    [data-theme="underwater"] .book-author {
+      font-family: 'Quicksand', sans-serif;
+      color: var(--text-light);
+    }
+    
+    /* Special floating animation for underwater hover */
+    @keyframes underwater-float {
+      0%, 100% { transform: translateY(0) rotateY(-20deg); }
+      50% { transform: translateY(-5px) rotateY(-25deg); }
+    }
+    
+    [data-theme="underwater"] .book:hover .book-cover {
+      animation: underwater-float 3s ease-in-out infinite;
+    }
+    
+    /* Special Fantasy theme effects */
+    [data-theme="fantasy"] h1, 
+    [data-theme="fantasy"] h2,
+    [data-theme="fantasy"] h3,
+    [data-theme="fantasy"] h4 {
+      font-family: 'Cinzel Decorative', 'Cinzel', serif;
+      letter-spacing: 0.5px;
+      color: var(--primary);
+      position: relative;
+    }
+    
+    [data-theme="fantasy"] h1::after,
+    [data-theme="fantasy"] h2::after,
+    [data-theme="fantasy"] h3::after {
+      content: "";
+      position: absolute;
+      height: 3px;
+      left: 0;
+      bottom: -5px;
+      width: 100%;
+      background: linear-gradient(90deg, 
+        var(--primary) 0%, 
+        var(--accent) 50%, 
+        var(--primary) 100%);
+      transform: scaleX(0.8);
+      opacity: 0.7;
+    }
+    
+    /* Special fantasy UI enhancements */
+    [data-theme="fantasy"] button {
+      border-radius: 0;
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      background-image: linear-gradient(to bottom, 
+        rgba(255,255,255,0.1) 0%, 
+        rgba(255,255,255,0) 100%);
+    }
+    
+    [data-theme="fantasy"] button::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg, 
+        transparent, 
+        rgba(255,255,255,0.2), 
+        transparent
+      );
+      transition: left 0.7s ease;
+    }
+    
+    [data-theme="fantasy"] button:hover::before {
+      left: 100%;
+    }
+    
+    [data-theme="fantasy"] button.btn-primary,
+    [data-theme="fantasy"] button.open-button,
+    [data-theme="fantasy"] .book-button.open-button {
+      background-color: var(--primary);
+      background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20.5V18H0v-2h20v-2.5L25 18l-5 4.5z' fill='%23ffffff' fill-opacity='0.2' fill-rule='evenodd'/%3E%3C/svg%3E"),
+        linear-gradient(to bottom, 
+          rgba(255,255,255,0.1) 0%, 
+          rgba(0,0,0,0.1) 100%);
+    }
+    
+    [data-theme="fantasy"] button.btn-secondary,
+    [data-theme="fantasy"] button.edit-button,
+    [data-theme="fantasy"] .book-button.edit-button {
+      background-color: var(--secondary);
+      background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20.5V18H0v-2h20v-2.5L25 18l-5 4.5z' fill='%23ffffff' fill-opacity='0.2' fill-rule='evenodd'/%3E%3C/svg%3E"),
+        linear-gradient(to bottom, 
+          rgba(255,255,255,0.1) 0%, 
+          rgba(0,0,0,0.1) 100%);
+    }
+    
+    [data-theme="fantasy"] .btn-danger,
+    [data-theme="fantasy"] .delete-button,
+    [data-theme="fantasy"] .book-button.delete-button {
+      background-color: var(--danger);
+      background-image: linear-gradient(to bottom, 
+        rgba(255,255,255,0.1) 0%, 
+        rgba(0,0,0,0.1) 100%);
+    }
+    
+    /* Fantasy input elements */
+    [data-theme="fantasy"] input, 
+    [data-theme="fantasy"] select, 
+    [data-theme="fantasy"] textarea {
+      background-color: var(--input-bg);
+      background-image: linear-gradient(to bottom,
+        rgba(255,255,255,0.7) 0%,
+        rgba(255,255,255,0) 100%);
+      border: 1px solid var(--border);
+      border-radius: 0;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+      font-family: 'EB Garamond', serif;
+      transition: all 0.3s ease;
+    }
+    
+    [data-theme="fantasy"] input:focus, 
+    [data-theme="fantasy"] select:focus, 
+    [data-theme="fantasy"] textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 5px rgba(125, 41, 51, 0.3), inset 0 1px 3px rgba(0,0,0,0.1);
+      outline: none;
+    }
+    
+    /* Fantasy chapter and character items */
+    [data-theme="fantasy"] .chapter-item,
+    [data-theme="fantasy"] .character-item,
+    [data-theme="fantasy"] .lore-item {
+      background: var(--chapter-item-bg);
+      border: 1px solid var(--border);
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+      margin-bottom: 8px;
+      position: relative;
+      transition: all 0.3s ease;
+      border-radius: 0;
+      background-image: linear-gradient(to bottom,
+        rgba(255,255,255,0.5) 0%,
+        rgba(255,255,255,0) 100%);
+      padding: 12px 10px;
+    }
+    
+    [data-theme="fantasy"] .chapter-item::before,
+    [data-theme="fantasy"] .character-item::before,
+    [data-theme="fantasy"] .lore-item::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 4px;
+      background: linear-gradient(to bottom, 
+        var(--primary) 0%, 
+        var(--primary-hover) 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    [data-theme="fantasy"] .chapter-item:hover::before,
+    [data-theme="fantasy"] .character-item:hover::before,
+    [data-theme="fantasy"] .lore-item:hover::before,
+    [data-theme="fantasy"] .chapter-item.active::before,
+    [data-theme="fantasy"] .character-item.active::before,
+    [data-theme="fantasy"] .lore-item.active::before {
+      opacity: 1;
+    }
+    
+    [data-theme="fantasy"] .chapter-item:hover,
+    [data-theme="fantasy"] .character-item:hover,
+    [data-theme="fantasy"] .lore-item:hover {
+      transform: translateX(3px);
+      box-shadow: 3px 3px 7px rgba(0,0,0,0.1);
+    }
+    
+    [data-theme="fantasy"] .chapter-item.active,
+    [data-theme="fantasy"] .character-item.active,
+    [data-theme="fantasy"] .lore-item.active {
+      background-color: var(--active-item);
+      border-color: var(--border);
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+      transform: translateX(3px);
+    }
+    
+    /* Fantasy editor */
+    [data-theme="fantasy"] #editor {
+      background: var(--editor-bg);
+      background-image: 
+        linear-gradient(#f4eadc 1px, transparent 1px),
+        linear-gradient(90deg, rgba(122, 98, 67, 0.03) 1px, transparent 1px);
+      background-size: 100% 26px, 100% 26px;
+      background-position: 0 1px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      padding: 26px 15px 15px 15px;
+      line-height: 26px;
+      font-family: 'EB Garamond', serif;
+      font-size: 18px;
+      color: var(--text);
+    }
+    
+    /* Fantasy book styles */
+    [data-theme="fantasy"] .book {
+      perspective: 1200px;
+      transform-style: preserve-3d;
+      filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
+    }
+    
+    [data-theme="fantasy"] .book-cover {
+      background: linear-gradient(45deg, 
+        #5d432c 0%, 
+        #a97d4c 40%, 
+        #d9b174 60%, 
+        #a97d4c 80%, 
+        #5d432c 100%);
+      border-radius: 0 5px 5px 0;
+      border: 1px solid #4a3520;
+      border-left: 2px ridge #d9b174;
+      box-shadow: 
+        inset 0 0 30px rgba(0,0,0,0.2),
+        1px 1px 2px rgba(255,255,255,0.2);
+      transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    [data-theme="fantasy"] .book:hover .book-cover {
+      transform: rotateY(-30deg);
+    }
+    
+    [data-theme="fantasy"] .book-spine {
+      background: linear-gradient(to right, 
+        #4a3520 0%, 
+        #a97d4c 30%, 
+        #d9b174 50%, 
+        #a97d4c 70%, 
+        #4a3520 100%);
+      box-shadow: inset -2px 0 5px rgba(0,0,0,0.5);
+    }
+    
+    [data-theme="fantasy"] .book-page {
+      background: #f5eedd;
+      border-radius: 0 3px 3px 0;
+      box-shadow: 
+        inset 0 0 20px rgba(0,0,0,0.2),
+        1px 1px 1px rgba(0,0,0,0.1);
+    }
+    
+    [data-theme="fantasy"] .book-info {
+      background: rgba(255,251,245,0.9);
+      border-top: 1px solid rgba(0,0,0,0.1);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
+    }
+    
+    [data-theme="fantasy"] .book-title {
+      font-family: 'Cinzel', serif;
+      text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+      letter-spacing: 0.5px;
+    }
+    
+    [data-theme="fantasy"] .book-author {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+    }
+    
+    [data-theme="fantasy"] .book-cover-img {
+      border: 4px double #d0bda5;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+    
+    /* Fantasy modal styles */
+    [data-theme="fantasy"] #imageModal,
+    [data-theme="fantasy"] #specialCharModal,
+    [data-theme="fantasy"] #characterImagePreviewModal,
+    [data-theme="fantasy"] #loreImagePreviewModal {
+      background-image: radial-gradient(
+        circle at center,
+        rgba(20,10,5,0.7) 0%,
+        rgba(20,10,5,0.9) 100%
+      );
+    }
+    
+    [data-theme="fantasy"] #imageModal > div,
+    [data-theme="fantasy"] #specialCharModal > div,
+    [data-theme="fantasy"] #loreEditorContainer {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      box-shadow: 0 0 30px rgba(0,0,0,0.3);
+      border-radius: 0;
+      position: relative;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M54 22c0-12-18-8-18 4 0 12 18 8 18-4zM22 38c0-12-18-8-18 4 0 12 18 8 18-4zM50 50c0-6-9-4-9 2 0 6 9 4 9-2zM10 10c0-6-9-4-9 2 0 6 9 4 9-2zM30 30c0-6-9-4-9 2 0 6 9 4 9-2z' fill='%23d5c7b1' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E"),
+        linear-gradient(0deg, var(--card-bg) 0%, rgba(255,251,245,0.97) 100%);
+    }
+    
+    [data-theme="fantasy"] #imageModal > div::before,
+    [data-theme="fantasy"] #specialCharModal > div::before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      border: 1px solid var(--accent);
+      z-index: -1;
+      opacity: 0.3;
+      pointer-events: none;
+    }
+    
+    [data-theme="fantasy"] .special-char-btn {
+      border: 1px solid var(--border);
+      background-color: var(--special-char-btn);
+      color: var(--text);
+      font-family: 'Cinzel', serif;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(2px);
+    }
+    
+    [data-theme="fantasy"] .special-char-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 3px 5px rgba(0,0,0,0.1);
+      border-color: var(--accent);
+      color: var(--primary);
+    }
+    
+    /* Fantasy toolbar */
+    [data-theme="fantasy"] #toolbar {
+      background-color: var(--toolbar-bg);
+      background-image: linear-gradient(to bottom,
+        rgba(255,255,255,0.5) 0%,
+        rgba(255,255,255,0) 100%);
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      padding: 12px;
+      border-radius: 0;
+    }
+    
+    /* Add decorative corners to certain elements */
+    [data-theme="fantasy"] header,
+    [data-theme="fantasy"] #novelEditorContainer > div:first-child,
+    [data-theme="fantasy"] #characterEditorContainer > div:first-child,
+    [data-theme="fantasy"] #loreEditorContainer > div:first-child,
+    [data-theme="fantasy"] #toolbar,
+    [data-theme="fantasy"] #editor {
+      position: relative;
+    }
+    
+    [data-theme="fantasy"] header::before,
+    [data-theme="fantasy"] header::after,
+    [data-theme="fantasy"] #novelEditorContainer > div:first-child::before,
+    [data-theme="fantasy"] #novelEditorContainer > div:first-child::after,
+    [data-theme="fantasy"] #characterEditorContainer > div:first-child::before,
+    [data-theme="fantasy"] #characterEditorContainer > div:first-child::after,
+    [data-theme="fantasy"] #loreEditorContainer > div:first-child::before,
+    [data-theme="fantasy"] #loreEditorContainer > div:first-child::after,
+    [data-theme="fantasy"] #toolbar::before,
+    [data-theme="fantasy"] #toolbar::after,
+    [data-theme="fantasy"] #editor::before,
+    [data-theme="fantasy"] #editor::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-color: var(--primary);
+      border-style: solid;
+      pointer-events: none;
+      opacity: 0.6;
+    }
+    
+    [data-theme="fantasy"] header::before,
+    [data-theme="fantasy"] #novelEditorContainer > div:first-child::before,
+    [data-theme="fantasy"] #characterEditorContainer > div:first-child::before,
+    [data-theme="fantasy"] #loreEditorContainer > div:first-child::before,
+    [data-theme="fantasy"] #toolbar::before,
+    [data-theme="fantasy"] #editor::before {
+      top: 5px;
+      left: 5px;
+      border-width: 2px 0 0 2px;
+    }
+    
+    [data-theme="fantasy"] header::after,
+    [data-theme="fantasy"] #novelEditorContainer > div:first-child::after,
+    [data-theme="fantasy"] #characterEditorContainer > div:first-child::after,
+    [data-theme="fantasy"] #loreEditorContainer > div:first-child::after,
+    [data-theme="fantasy"] #toolbar::after,
+    [data-theme="fantasy"] #editor::after {
+      top: 5px;
+      right: 5px;
+      border-width: 2px 2px 0 0;
+    }
+    
+    [data-theme="fantasy"] header > img {
+      filter: sepia(0.3);
+    }
+    
+    /* Character images */
+    [data-theme="fantasy"] .character-image-item,
+    [data-theme="fantasy"] .lore-image-item {
+      border: 1px solid var(--border);
+      background: var(--input-bg);
+      transition: all 0.3s ease;
+      position: relative;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    
+    [data-theme="fantasy"] .character-image-item::before,
+    [data-theme="fantasy"] .lore-image-item::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(
+        circle at center,
+        rgba(255,255,255,0) 30%,
+        rgba(195,155,94,0.2) 100%
+      );
+      pointer-events: none;
+    }
+    
+    [data-theme="fantasy"] .character-image-item:hover,
+    [data-theme="fantasy"] .lore-image-item:hover {
+      transform: scale(1.05) rotate(1deg);
+      box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+      border-color: var(--accent);
+    }
+    
+    [data-theme="fantasy"] .character-image-item img,
+    [data-theme="fantasy"] .lore-image-item img {
+      transition: all 0.5s ease;
+    }
+    
+    [data-theme="fantasy"] .character-image-item:hover img,
+    [data-theme="fantasy"] .lore-image-item:hover img {
+      transform: scale(1.1) rotate(-1deg);
+    }
+    
+    /* Fantasy blockquote */
+    [data-theme="fantasy"] #editor blockquote {
+      border-left: 3px solid var(--primary);
+      background-color: rgba(245,238,221,0.5);
+      padding: 10px 15px;
+      margin: 15px 0;
+      position: relative;
+      font-style: italic;
+      color: var(--text);
+    }
+    
+    [data-theme="fantasy"] #editor blockquote::before {
+      content: """;
+      font-family: 'EB Garamond', serif;
+      font-size: 60px;
+      color: var(--primary);
+      opacity: 0.2;
+      position: absolute;
+      top: -15px;
+      left: 5px;
+    }
+    
+    /* Cyberpunk theme */
+    [data-theme="cyberpunk"] {
+      --background: #050b18;
+      --text: #00ffff;
+      --text-light: #ff00ff;
+      --primary: #00ffaa;
+      --primary-hover: #00cc88;
+      --secondary: #ff00aa;
+      --secondary-hover: #cc0088;
+      --accent: #ffcc00;
+      --accent-hover: #cc9900;
+      --danger: #ff3366;
+      --danger-hover: #cc2a52;
+      --border: #0077ff;
+      --card-bg: #101a2c;
+      --sidebar-bg: #09142b;
+      --toolbar-bg: #0d1833;
+      --hover-bg: #132347;
+      --menu-bg: #101a2c;
+      --shadow: rgba(0,255,255,0.3);
+      --input-bg: #0d1833;
+      --input-border: #0077ff;
+      --editor-bg: #09142b;
+      --active-item: #132347;
+      --chapter-item-bg: #0d1833;
+      --modal-overlay: rgba(5,11,24,0.9);
+      --special-char-btn: #0d1833;
+      --link-color: #00ffff;
+      --code-bg: #0d1833;
+      font-family: 'Orbitron', sans-serif;
+    }
+    
+    /* Sci-Fi theme */
+    [data-theme="scifi"] {
+      --background: #0a1017;
+      --text: #8be9fd;
+      --text-light: #6272a4;
+      --primary: #50fa7b;
+      --primary-hover: #41bb6c;
+      --secondary: #bd93f9;
+      --secondary-hover: #a075e8;
+      --accent: #ffb86c;
+      --accent-hover: #e59c59;
+      --danger: #ff5555;
+      --danger-hover: #e64545;
+      --border: #44475a;
+      --card-bg: #0e1620;
+      --sidebar-bg: #080f18;
+      --toolbar-bg: #111b27;
+      --hover-bg: #162433;
+      --menu-bg: #0e1620;
+      --shadow: rgba(139,233,253,0.2);
+      --input-bg: #111b27;
+      --input-border: #44475a;
+      --editor-bg: #080f18;
+      --active-item: #162433;
+      --chapter-item-bg: #111b27;
+      --modal-overlay: rgba(10,16,23,0.9);
+      --special-char-btn: #111b27;
+      --link-color: #8be9fd;
+      --code-bg: #111b27;
+      font-family: 'Rajdhani', sans-serif;
+    }
+    
+    /* Horror theme */
+    [data-theme="horror"] {
+      --background: #0a0000;
+      --text: #cf0000;
+      --text-light: #700000;
+      --primary: #8b0000;
+      --primary-hover: #6d0000;
+      --secondary: #400000;
+      --secondary-hover: #2e0000;
+      --accent: #610000;
+      --accent-hover: #4d0000;
+      --danger: #ff0000;
+      --danger-hover: #cc0000;
+      --border: #300000;
+      --card-bg: #1a0000;
+      --sidebar-bg: #150000;
+      --toolbar-bg: #240000;
+      --hover-bg: #2c0000;
+      --menu-bg: #1a0000;
+      --shadow: rgba(170,0,0,0.5);
+      --input-bg: #240000;
+      --input-border: #300000;
+      --editor-bg: #150000;
+      --active-item: #2c0000;
+      --chapter-item-bg: #240000;
+      --modal-overlay: rgba(10,0,0,0.9);
+      --special-char-btn: #240000;
+      --link-color: #cf0000;
+      --code-bg: #240000;
+      font-family: 'Special Elite', cursive;
+    }
+
+  @media (max-width: 768px) {
+    #sidebar { 
+      display: none; 
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      right: 0; 
+      height: 100%; 
+      width: 100%; 
+      z-index: 200; 
+      background: var(--sidebar-bg);
+      overflow-y: scroll;
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE and Edge */
+    }
+    
+    /* Hide scrollbar in WebKit browsers */
+    #sidebar::-webkit-scrollbar {
+      display: none;
+    }
+    
+    #editorContainer { width: 100%; height: 90%; }
+    #novelListContainer { width: 100%; height: 100%; }
+    #characterEditorContainer { width: 100%; height: 100%; }
+    #novelEditorContainer { width: 100%; height: 100%; }
+    #loreEditorContainer { width: 100%; height: 100%; }
+    #mainContent { padding-bottom: 50px; width: 100%; height: calc(100vh - 135px); }
+    #toolbar { flex-wrap: wrap; overflow-x: auto; }
+    #editor { height: 95%; }
+  }
+  
+  .chapter-item, .character-item, .lore-item { 
+    padding: 8px; 
+    margin-bottom: 5px; 
+    background: var(--chapter-item-bg); 
+    border-radius: 4px; 
+    cursor: pointer; 
+    transition: background-color 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .chapter-item.active, .character-item.active, .lore-item.active { 
+    background: var(--active-item); 
+    font-weight: bold; 
+  }
+  
+  [contenteditable=true]:empty:before {
+    content: attr(placeholder);
+    color: var(--text-light);
+    font-style: italic;
+  }
+  
+  /* Rich text editor specific styles */
+  #editor blockquote {
+    border-left: 3px solid var(--border);
+    margin-left: 5px;
+    padding-left: 15px;
+    color: var(--text-light);
+  }
+  
+  #editor pre {
+    background-color: var(--code-bg);
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  
+  #editor table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+  }
+  
+  #editor table td, #editor table th {
+    border: 1px solid var(--border);
+    padding: 8px;
+  }
+  
+  #editor img {
+    max-width: 100%;
+    height: auto;
+    cursor: pointer;
+  }
+  
+  #editor img.selected {
+    outline: 2px solid var(--primary);
+  }
+  
+  #editor hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 20px 0;
+  }
+  
+  /* Special character button styles */
+  .special-char-btn {
+    padding: 10px;
+    min-width: 40px;
+    font-size: 12px;
+    border: 1px solid var(--border);
+    background: var(--special-char-btn);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+    color: var(--text);
+  }
+  
+  .special-char-btn:hover {
+    background: var(--hover-bg);
+  }
+  
+  /* Novel card styles */
+  .novel-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 15px;
+    width: 220px;
+    box-shadow: 0 2px 4px var(--shadow);
+    transition: transform 0.2s, box-shadow 0.2s;
+    color: var(--text);
+  }
+  
+  .novel-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px var(--shadow);
+  }
+  
+  .novel-title {
+    margin-top: 0;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--text);
+  }
+  
+  /* Editable chapter title styles */
+  .chapter-title, .character-title, .lore-title {
+    flex: 1;
+    cursor: pointer;
+    padding: 2px 4px;
+    border-radius: 2px;
+    font-size: 0.9rem;
+    color: var(--text);
+  }
+  
+  .chapter-title:hover, .character-title:hover, .lore-title:hover {
+    background-color: var(--hover-bg);
+  }
+  
+  .chapter-title[contenteditable="true"], .character-title[contenteditable="true"], .lore-title[contenteditable="true"] {
+    background-color: var(--input-bg);
+    border: 1px solid var(--primary);
+    outline: none;
+    cursor: text;
+  }
+  
+  /* Character and Lore image styles */
+  .character-image-item, .lore-image-item {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    border: 1px dashed var(--border);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: transform 0.2s;
+    background: var(--input-bg);
+    color: var(--text-light);
+  }
+  
+  .character-image-item:hover, .lore-image-item:hover {
+    transform: scale(1.05);
+  }
+  
+  .character-image-item img, .lore-image-item img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+  }
+  
+  .character-image-item img:hover, .lore-image-item img:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Book styles */
+  .book {
+    width: 180px;
+    height: 350px;
+    position: relative;
+    perspective: 1000px;
+    margin-bottom: 20px;
+    transform-style: preserve-3d;
+  }
+  
+  .book-cover {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    transform-origin: left center;
+    transition: transform 0.5s ease;
+    background: var(--card-bg);
+    box-shadow: 0 0 20px var(--shadow);
+    border-radius: 2px 6px 6px 2px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+  }
+  
+  .book:hover .book-cover {
+    transform: rotateY(-25deg);
+    box-shadow: 20px 0 20px var(--shadow);
+  }
+  
+  .book-spine {
+    position: absolute;
+    width: 20px;
+    height: 100%;
+    left: 0;
+    background: linear-gradient(to right, var(--hover-bg), var(--primary));
+    transform: rotateY(90deg) translateZ(-10px);
+    transform-origin: left;
+    box-shadow: inset -2px 0 5px var(--shadow);
+  }
+  
+  .book-page {
+    position: absolute;
+    width: 95%;
+    height: 96%;
+    top: 2%;
+    right: 0;
+    background: var(--background);
+    transform: translateZ(-1px);
+    border-radius: 1px 5px 5px 1px;
+    box-shadow: 0 0 2px var(--shadow);
+  }
+  
+  .book-cover-img {
+    margin: 0px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: transparent;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  
+  .book-info {
+    padding: 10px;
+    padding-top: 4px;
+    background: var(--card-bg);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: var(--text);
+  }
+  
+  .book-title {
+    font-weight: bold;
+    font-size: 14px;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--text);
+  }
+  
+  .book-author {
+    font-size: 12px;
+    color: var(--text-light);
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .book-stats {
+    font-size: 10px;
+    color: var(--text-light);
+    margin-top: 4px;
+  }
+  
+  .book-buttons {
+    display: flex;
+    position: absolute;
+    bottom: -40px;
+    left: 0;
+    right: 0;
+    transition: bottom 0.3s ease;
+  }
+  
+  .book:hover .book-buttons {
+    bottom: 0;
+  }
+  
+  .book-button {
+    flex: 1;
+    padding: 8px 0;
+    text-align: center;
+    font-size: 12px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  
+  .edit-button {
+    background: var(--secondary);
+    color: white;
+  }
+  
+  .edit-button:hover {
+    background: var(--secondary-hover);
+  }
+  
+  .open-button {
+    background: var(--primary);
+    color: white;
+  }
+  
+  .open-button:hover {
+    background: var(--primary-hover);
+  }
+  
+  .delete-button {
+    background: var(--danger);
+    color: white;
+  }
+  
+  .delete-button:hover {
+    background: var(--danger-hover);
+  }
+  
+  /* Novel cover image */
+  #novelCoverPreviewContainer {
+    transition: transform 0.2s;
+    overflow: hidden;
+    background: var(--input-bg);
+  }
+  
+  #novelCoverPreviewContainer:hover {
+    transform: scale(1.05);
+  }
+  
+  #novelCoverPreview {
+    object-fit: cover;
+    transition: transform 0.3s;
+  }
+  
+  #novelCoverPreview:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Apply theme transitions */
+  * {
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  }
+  
+  /* Cyberpunk theme effects */
+  [data-theme="cyberpunk"] h1, 
+  [data-theme="cyberpunk"] h2,
+  [data-theme="cyberpunk"] h3,
+  [data-theme="cyberpunk"] h4,
+  [data-theme="cyberpunk"] .book-title,
+  [data-theme="cyberpunk"] button {
+    text-shadow: 0 0 5px var(--text), 0 0 10px var(--text);
+  }
+  
+  [data-theme="cyberpunk"] #editor,
+  [data-theme="cyberpunk"] .chapter-item,
+  [data-theme="cyberpunk"] .character-item,
+  [data-theme="cyberpunk"] .lore-item,
+  [data-theme="cyberpunk"] .book {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  [data-theme="cyberpunk"] #editor::before,
+  [data-theme="cyberpunk"] .chapter-item::before,
+  [data-theme="cyberpunk"] .character-item::before,
+  [data-theme="cyberpunk"] .lore-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--text), transparent);
+    animation: cyberpunk-scanline 3s linear infinite;
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  @keyframes cyberpunk-scanline {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(1000%); }
+  }
+  
+  [data-theme="cyberpunk"] button:hover {
+    animation: cyberpunk-glitch 0.3s linear;
+  }
+  
+  @keyframes cyberpunk-glitch {
+    0% { transform: translate(2px, 0); }
+    25% { transform: translate(-2px, 0); }
+    50% { transform: translate(2px, 0); }
+    75% { transform: translate(-2px, 0); }
+    100% { transform: translate(0, 0); }
+  }
+  
+  [data-theme="cyberpunk"] input:focus, 
+  [data-theme="cyberpunk"] select:focus, 
+  [data-theme="cyberpunk"] textarea:focus,
+  [data-theme="cyberpunk"] #editor:focus {
+    box-shadow: 0 0 10px var(--primary), 0 0 20px var(--primary);
+  }
+  
+  [data-theme="cyberpunk"] .book-cover {
+    background: linear-gradient(135deg, var(--card-bg) 0%, var(--sidebar-bg) 100%);
+    border: 1px solid var(--primary);
+    box-shadow: 0 0 15px var(--primary);
+  }
+  
+  [data-theme="cyberpunk"] .book-spine {
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+  }
+  
+  /* Sci-fi Theme Effects */
+  [data-theme="scifi"] button,
+  [data-theme="scifi"] .chapter-item,
+  [data-theme="scifi"] .character-item,
+  [data-theme="scifi"] .lore-item {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  [data-theme="scifi"] button::after,
+  [data-theme="scifi"] .chapter-item::after,
+  [data-theme="scifi"] .character-item::after,
+  [data-theme="scifi"] .lore-item::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(45deg, transparent 45%, rgba(139,233,253,0.1) 50%, transparent 55%);
+    background-size: 200% 200%;
+    animation: scifi-holographic 3s ease infinite;
+    pointer-events: none;
+  }
+
+[data-theme="comic book"] {
+  /* High contrast, vibrant background */
+  --background: #fff600;
+  --foreground: #1a1a1a;
+  --primary: #e60012;
+  --secondary: #0078ff;
+  --accent: #00ff26;
+  --highlight: #ffae00;
+  --muted: #fff200;
+  --border: #1a1a1a;
+  --shadow: 0 6px 30px 0 rgba(0,0,0,0.4), 0 1.5px 6px 0 #0078ff;
+  --dropdown-bg: #fff600;
+  --dropdown-border: #1a1a1a;
+  --dropdown-shadow: 0 2px 12px 0 rgba(0,0,0,0.24);
+
+  /* Comic book font stack - use bold, dynamic fonts */
+  --font-family: 'Bangers', 'Comic Sans MS', 'Comic Sans', Impact, fantasy, sans-serif;
+  --font-weight: 900;
+  --font-size: 18px;
+  --line-height: 1.2;
+}
+
+[data-theme="comic book"] body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-family);
+  font-weight: var(--font-weight);
+  font-size: 12px;
+  line-height: var(--line-height);
+  letter-spacing: 0.02em;
+  text-shadow: 1px 1px 0 #fff, 2px 2px 0 #1a1a1a;
+  text-decoration: italic;
+}
+
+/* Action-packed comic panel borders */
+[data-theme="comic book"] *,
+[data-theme="comic book"] *:before,
+[data-theme="comic book"] *:after {
+  box-sizing: border-box;
+}
+
+/* ThemeSelect dropdown box styling */
+[data-theme="comic book"] select {
+  background: var(--dropdown-bg);
+  color: var(--primary);
+  border: 4px solid var(--dropdown-border);
+  border-radius: 10px;
+  box-shadow: var(--dropdown-shadow);
+  font-family: var(--font-family);
+  font-weight: 900;
+  font-size: 1.2em;
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+  padding: 0.6em 1.5em;
+  transition: border-color 0.2s, background 0.2s;
+  text-shadow: 1px 1px 0 #fff, 2px 2px 0 #1a1a1a;
+  cursor: pointer;
+}
+
+[data-theme="comic book"] select:focus, 
+[data-theme="comic book"] select:hover {
+  border-color: var(--accent);
+  background: var(--highlight);
+  color: var(--secondary);
+}
+
+[data-theme="comic book"] option {
+  background: var(--dropdown-bg);
+  color: var(--primary);
+  font-family: var(--font-family);
+  font-weight: 900;
+  font-size: 1em;
+  text-shadow: 1px 1px 0 #fff, 1.5px 1.5px 0 #1a1a1a;
+}
+
+/* Comic pop effect for headings */
+[data-theme="comic book"] h1, 
+[data-theme="comic book"] h2, 
+[data-theme="comic book"] h3, 
+[data-theme="comic book"] h4, 
+[data-theme="comic book"] h5, 
+[data-theme="comic book"] h6 {
+  color: var(--primary);
+  font-family: var(--font-family);
+  font-size: 18px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-shadow:
+    2px 2px 0 #fff,
+    4px 4px 0 #1a1a1a,
+    0 0 10px var(--secondary);
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+/* Comic panel look for containers */
+[data-theme="comic book"] [role="main"], 
+[data-theme="comic book"] main,
+[data-theme="comic book"] section,
+[data-theme="comic book"] .panel,
+[data-theme="comic book"] .card {
+  background: #fffde7;
+  border: 5px solid var(--primary);
+  border-radius: 18px 4px 16px 8px;
+  box-shadow: 0 8px 30px 0 rgba(0,0,0,0.35), 0 2px 8px 0 var(--secondary);
+  padding: 1.2em 2em;
+  margin: 1em 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Add a starburst effect to the dropdown */
+[data-theme="comic book"] select {
+  background-image: radial-gradient(circle at 60% 40%, #00fd87 25%, #fff600 100%);
+}
+
+[data-theme="comic book"] select:active {
+  background: var(--accent);
+  color: var(--foreground);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 5px var(--secondary);
+}
+
+/* Energetic comic button style */
+[data-theme="comic book"] button,
+[data-theme="comic book"] input[type="button"],
+[data-theme="comic book"] input[type="submit"] {
+  background: var(--primary);
+  color: #fff;
+  border: 2px solid var(--foreground);
+  border-radius: 10px;
+  font-family: var(--font-family);
+  font-size: 12px
+  font-weight: 900;
+  font-size: 0.9em;
+  letter-spacing: 0.03em;
+  text-shadow: 1px 1px 0 #000, 2px 2px 0 #1a1a1a;
+  padding: 0.2em 0.4em;
+  box-shadow: 0 3px 4px 0 var(--secondary);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+[data-theme="comic book"] button:hover,
+[data-theme="comic book"] button:focus,
+[data-theme="comic book"] input[type="button"]:hover,
+[data-theme="comic book"] input[type="button"]:focus,
+[data-theme="comic book"] input[type="submit"]:hover,
+[data-theme="comic book"] input[type="submit"]:focus {
+  background-color: yellow;
+  color: var(--primary);
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 4px var(--highlight);
+}
+
+/* Speech bubble effect for tooltips */
+[data-theme="comic book"] [role="tooltip"], 
+[data-theme="comic book"] .tooltip {
+  background: #66d;
+  color: var(--primary);
+  border: 4px solid var(--secondary);
+  border-radius: 14px;
+  font-family: var(--font-family);
+  font-weight: 900;
+  font-size: 12px;
+  padding: 0.7em 1em;
+  box-shadow: 0 2px 10px 0 #1a1a1a;
+  position: relative;
+}
+[data-theme="comic book"] [role="tooltip"]:after, 
+[data-theme="comic book"] .tooltip:after {
+  content: "";
+  position: absolute;
+  left: 20px;
+  bottom: -15px;
+  width: 0; 
+  height: 0; 
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 15px solid #fff;
+  filter: drop-shadow(0 2px 0 #1a1a1a);
+}
+[data-theme="comic book"] #editor > * {
+  text-shadow: none;
+  font-family: Bangers, 'Comic Sans MS', 'Comic Sans', Impact, fantasy, sans-serif;
+  
+}
+    
+/* Comic-style links */
+[data-theme="comic book"] a {
+  color: var(--secondary);
+  font-weight: 900;
+  text-decoration: underline wavy var(--primary) 2px;
+  text-shadow: 1px 1px 0 #fff, 1.5px 1.5px 0 #1a1a1a;
+  transition: color 0.15s;
+}
+[data-theme="comic book"] a:hover,
+[data-theme="comic book"] a:focus {
+  color: var(--accent);
+  text-decoration-color: var(--secondary);
+}
+
+/* Add comic halftone dot overlay to dropdown */
+[data-theme="comic book"] select {
+  position: relative;
+  z-index: 1;
+  background-blend-mode: multiply;
+  background-image:
+    radial-gradient(circle at 80% 30%, #fffbe5 7%, transparent 12%),
+    repeating-radial-gradient(circle, #11e500 1px, transparent 2px, transparent 10px);
+}
+
+/* Hide scrollbars for a cleaner comic look */
+[data-theme="comic book"] #editor::-webkit-scrollbar {
+  width: 10px;
+  background: var(--muted);
+}
+[data-theme="comic book"] #editor::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 8px;
+}
+[data-theme="comic book"] #editor::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary);
+}
+
+
+    
+  @keyframes scifi-holographic {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
+  }
+  
+  [data-theme="scifi"] input:focus, 
+  [data-theme="scifi"] select:focus, 
+  [data-theme="scifi"] textarea:focus,
+  [data-theme="scifi"] #editor {
+    box-shadow: 0 0 5px var(--primary), 0 0 10px var(--primary);
+  }
+  
+  [data-theme="scifi"] .book {
+    transform-style: preserve-3d;
+  }
+  
+  [data-theme="scifi"] .book-cover {
+    background: linear-gradient(135deg, var(--card-bg) 0%, var(--sidebar-bg) 100%);
+    border: 1px solid var(--primary);
+    box-shadow: 0 0 15px rgba(80, 250, 123, 0.3);
+  }
+  
+  /* Horror Theme Effects */
+  [data-theme="horror"] .chapter-item,
+  [data-theme="horror"] .character-item,
+  [data-theme="horror"] .lore-item,
+  [data-theme="horror"] h1,
+  [data-theme="horror"] h2,
+  [data-theme="horror"] h3,
+  [data-theme="horror"] button {
+    position: relative;
+  }
+  
+  [data-theme="horror"] .chapter-item::before,
+  [data-theme="horror"] .character-item::before,
+  [data-theme="horror"] .lore-item::before,
+  [data-theme="horror"] h1::before,
+  [data-theme="horror"] h2::before,
+  [data-theme="horror"] h3::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: var(--text);
+    clip-path: polygon(
+      0% 0%, 5% 100%, 10% 0%, 15% 70%, 20% 0%, 25% 100%, 30% 0%, 
+      35% 90%, 40% 0%, 45% 50%, 50% 0%, 55% 80%, 60% 0%, 65% 40%, 
+      70% 0%, 75% 60%, 80% 0%, 85% 100%, 90% 0%, 95% 70%, 100% 0%
+    );
+    z-index: 1;
+  }
+  
+  [data-theme="horror"] button,
+  [data-theme="horror"] .book-title,
+  [data-theme="horror"] h1, 
+  [data-theme="horror"] h2, 
+  [data-theme="horror"] h3 {
+    animation: horror-flicker 5s linear infinite;
+  }
+  
+  @keyframes horror-flicker {
+    0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
+      opacity: 1;
+    }
+    20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
+      opacity: 0.5;
+    }
+  }
+  
+  [data-theme="horror"] button, 
+  [data-theme="horror"] input, 
+  [data-theme="horror"] select,
+  [data-theme="horror"] .chapter-title,
+  [data-theme="horror"] .character-title,
+  [data-theme="horror"] .lore-title {
+    filter: blur(0.3px);
+    letter-spacing: 1px;
+  }
+  
+  [data-theme="horror"] #editor::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(170, 0, 0, 0.03) 0px,
+      rgba(170, 0, 0, 0.03) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  [data-theme="horror"] .book-cover {
+    background: linear-gradient(135deg, var(--card-bg) 0%, var(--sidebar-bg) 100%);
+    border: 1px solid var(--danger);
+    box-shadow: 0 0 15px rgba(170, 0, 0, 0.5);
+  }
+  
+  [data-theme="horror"] .book-cover::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent 95%, rgba(170, 0, 0, 0.8) 100%);
+    pointer-events: none;
+    opacity: 0.5;
+  }
+  
+  /* Draggable items styling */
+  .chapter-item.dragging, .character-item.dragging, .lore-item.dragging {
+    opacity: 0.5;
+    border: 2px dashed var(--primary);
+  }
+  
+  .chapter-item.drop-above, .character-item.drop-above, .lore-item.drop-above {
+    border-top: 2px solid var(--primary);
+  }
+  
+  .chapter-item.drop-below, .character-item.drop-below, .lore-item.drop-below {
+    border-bottom: 2px solid var(--primary);
+  }
+  
+  .drag-handle {
+    cursor: grab;
+    color: var(--text-light);
+    margin-right: 5px;
+    user-select: none;
+  }
+  
+  .drag-handle:hover {
+    color: var(--primary);
+  }
+  
+  /* Always hide body scrollbar when editorContainer is visible */
+  body {
+    overflow: auto;
+  }
+  
+  /* Underwater theme bubble effects */
+  [data-theme="underwater"] .book {
+    overflow: visible;
+  }
+  
+  [data-theme="underwater"] .book::before {
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    left: -20px;
+    top: 40%;
+    animation: underwater-bubble 8s ease-in infinite;
+    z-index: 5;
+  }
+  
+  [data-theme="underwater"] .book::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.15);
+    left: -15px;
+    top: 60%;
+    animation: underwater-bubble 10s ease-in 1s infinite;
+    z-index: 5;
+  }
+  
+  @keyframes underwater-bubble {
+    0% {
+      transform: translateY(0) translateX(0) scale(0.5);
+      opacity: 0;
+    }
+    10% {
+      transform: translateY(-10px) translateX(5px) scale(0.8);
+      opacity: 0.8;
+    }
+    40% {
+      transform: translateY(-30px) translateX(10px) scale(1);
+      opacity: 0.6;
+    }
+    70% {
+      transform: translateY(-70px) translateX(15px) scale(1.2);
+      opacity: 0.4;
+    }
+    100% {
+      transform: translateY(-100px) translateX(20px) scale(0.8);
+      opacity: 0;
+    }
+  }
+  
+  /* Underwater theme seaweed effect for lists */
+  [data-theme="underwater"] ul {
+    position: relative;
+  }
+  
+  [data-theme="underwater"] ul::before {
+    content: "";
+    position: absolute;
+    left: -15px;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    background: var(--secondary);
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='5' height='100' viewBox='0 0 5 100'%3E%3Cpath d='M0,0 Q5,10 0,20 Q5,30 0,40 Q5,50 0,60 Q5,70 0,80 Q5,90 0,100' stroke='%2320b2aa' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+    mask-size: cover;
+    animation: underwater-seaweed 5s ease-in-out infinite;
+    opacity: 0.3;
+  }
+
+
+    
+  @keyframes underwater-seaweed {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(3px); }
+  }
+    @keyframes twinkling {
+      0% { opacity: 0.1; }
+      50% { opacity: 1; }
+      100% { opacity: 0.1; }
+    }
+    
+    @keyframes floatingStars {
+      0% { transform: translateY(0) translateX(0); }
+      25% { transform: translateY(-5px) translateX(3px); }
+      50% { transform: translateY(0) translateX(0); }
+      75% { transform: translateY(5px) translateX(-3px); }
+      100% { transform: translateY(0) translateX(0); }
+    }
+    
+    @keyframes nebulaPulse {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    @keyframes galaxyRotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    @keyframes cosmic-glow {
+      0% { box-shadow: 0 0 5px rgba(111, 0, 255, 0.5), 0 0 10px rgba(0, 174, 255, 0.3); }
+      50% { box-shadow: 0 0 10px rgba(111, 0, 255, 0.8), 0 0 20px rgba(0, 174, 255, 0.6); }
+      100% { box-shadow: 0 0 5px rgba(111, 0, 255, 0.5), 0 0 10px rgba(0, 174, 255, 0.3); }
+    }
+
+    .star {
+      position: absolute;
+      background-color: white;
+      border-radius: 50%;
+      animation: twinkling 4s infinite;
+    }
+    
+    .star.sm {
+      width: 1px;
+      height: 1px;
+      opacity: 0.8;
+    }
+    
+    .star.md {
+      width: 2px;
+      height: 2px;
+      opacity: 0.9;
+    }
+    
+    .star.lg {
+      width: 3px;
+      height: 3px;
+      opacity: 1;
+    }
+
+    /* Create a starfield overlay for galaxy theme */
+    .starfield-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 10;
+      overflow: hidden;
+    }
+    
+    /* Galaxy theme specific styles */
+    [data-theme="galaxy"] {
+      --background: #0a0821;
+      --card-bg: #1a1135;
+      --sidebar-bg: #13082f;
+      --toolbar-bg: #241445;
+      --menu-bg: #1a1135;
+      --primary: linear-gradient(135deg, #9c27b0, #3949ab);
+      --secondary: linear-gradient(135deg, #673ab7, #1976d2);
+      --danger: #ff416c;
+      --text: #e0e0ff;
+      --text-light: #a0a0d0;
+      --border: #4e379a;
+      --shadow: rgba(0, 0, 0, 0.35);
+      --input-bg: rgba(18, 10, 40, 0.8);
+      --input-border: #4e379a;
+      --editor-bg: #120a28;
+      --modal-overlay: rgba(13, 7, 33, 0.8);
+      --hover-bg: rgba(111, 0, 255, 0.1);
+      
+      background: var(--background);
+      color: var(--text);
+      transition: all 0.3s ease;
+      font-family: 'Orbitron', sans-serif;
+    }
+    
+    [data-theme="galaxy"] #novelApp {
+      position: relative;
+      background: linear-gradient(to bottom, #0a0821, #1a0e3b, #0a0821);
+    }
+    
+    [data-theme="galaxy"] #sidebar {
+      background-image: linear-gradient(to bottom, #13082f, #1a0e3b);
+      border-right: 1px solid rgba(111, 0, 255, 0.3);
+      animation: nebulaPulse 15s ease infinite;
+      position: relative;
+    }
+    
+    [data-theme="galaxy"] #sidebar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        radial-gradient(circle at 20% 30%, rgba(111, 0, 255, 0.3) 0%, transparent 30%),
+        radial-gradient(circle at 80% 70%, rgba(0, 174, 255, 0.3) 0%, transparent 30%);
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    
+    [data-theme="galaxy"] .sidebar-header img {
+      filter: drop-shadow(0 0 8px rgba(111, 0, 255, 0.8));
+    }
+    
+    [data-theme="galaxy"] #chapterList li,
+    [data-theme="galaxy"] #characterList li,
+    [data-theme="galaxy"] #loreList li {
+      background: rgba(26, 14, 59, 0.7);
+      border: 1px solid rgba(111, 0, 255, 0.3);
+      margin-bottom: 8px;
+      border-radius: 8px;
+      padding: 8px 12px;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      animation: cosmic-glow 3s infinite;
+      list-style-type: none;
+    }
+    
+    [data-theme="galaxy"] #chapterList li:hover,
+    [data-theme="galaxy"] #characterList li:hover,
+    [data-theme="galaxy"] #loreList li:hover {
+      background: rgba(38, 20, 87, 0.9);
+      transform: translateY(-2px);
+      box-shadow: 0 0 15px rgba(111, 0, 255, 0.4);
+    }
+    
+    [data-theme="galaxy"] #chapterList li a,
+    [data-theme="galaxy"] #characterList li a,
+    [data-theme="galaxy"] #loreList li a {
+      color: var(--text);
+      text-decoration: none;
+      display: block;
+    }
+    
+    [data-theme="galaxy"] #menuBtn,
+    [data-theme="galaxy"] #supportBtn,
+    [data-theme="galaxy"] #showNovelListBtn,
+    [data-theme="galaxy"] #addChapterBtn,
+    [data-theme="galaxy"] #addCharacterBtn,
+    [data-theme="galaxy"] #addLoreBtn,
+    [data-theme="galaxy"] #timelinebtn,
+    [data-theme="galaxy"] #addNovelBtn,
+    [data-theme="galaxy"] #AIgen,
+    [data-theme="galaxy"] #timerBtn,
+    [data-theme="galaxy"] .submit-btn,
+    [data-theme="galaxy"] #toggleExportBtn,
+    [data-theme="galaxy"] #toggleSidebarBtn {
+      background: var(--primary);
+      border-radius: 8px;
+      border: none;
+      box-shadow: 0 0 15px rgba(111, 0, 255, 0.3);
+      transition: all 0.3s ease;
+      animation: cosmic-glow 3s infinite;
+    }
+    
+    [data-theme="galaxy"] #menuBtn:hover,
+    [data-theme="galaxy"] #supportBtn:hover,
+    [data-theme="galaxy"] #showNovelListBtn:hover,
+    [data-theme="galaxy"] #addChapterBtn:hover,
+    [data-theme="galaxy"] #addCharacterBtn:hover,
+    [data-theme="galaxy"] #addLoreBtn:hover,
+    [data-theme="galaxy"] #timelinebtn:hover,
+    [data-theme="galaxy"] #addNovelBtn:hover,
+    [data-theme="galaxy"] #AIgen:hover,
+    [data-theme="galaxy"] #timerBtn:hover,
+    [data-theme="galaxy"] .submit-btn:hover,
+    [data-theme="galaxy"] #toggleExportBtn:hover,
+    [data-theme="galaxy"] #toggleSidebarBtn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(111, 0, 255, 0.5);
+    }
+    
+    [data-theme="galaxy"] #editor {
+      background: linear-gradient(to bottom, #120a28, #1a0e3b);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      animation: nebulaPulse 20s ease infinite;
+      background-size: 400% 400%;
+    }
+    
+    [data-theme="galaxy"] .toolbar-button,
+    [data-theme="galaxy"] #formatSelect,
+    [data-theme="galaxy"] #fontSelect,
+    [data-theme="galaxy"] #sizeSelect,
+    [data-theme="galaxy"] .form-input,
+    [data-theme="galaxy"] .form-textarea {
+      background-color: rgba(18, 10, 40, 0.8);
+      border: 1px solid rgba(111, 0, 255, 0.5);
+      box-shadow: 0 0 5px rgba(111, 0, 255, 0.3);
+      color: #e0e0ff;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+    
+    [data-theme="galaxy"] .toolbar-button:hover,
+    [data-theme="galaxy"] #formatSelect:hover,
+    [data-theme="galaxy"] #fontSelect:hover,
+    [data-theme="galaxy"] #sizeSelect:hover,
+    [data-theme="galaxy"] .form-input:focus,
+    [data-theme="galaxy"] .form-textarea:focus {
+      border-color: rgba(111, 0, 255, 0.8);
+      box-shadow: 0 0 10px rgba(111, 0, 255, 0.5);
+    }
+    
+    [data-theme="galaxy"] #toolbar {
+      background: linear-gradient(135deg, #241445, #1a0e3b);
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    }
+
+    [data-theme="galaxy"] #novelListContainer,
+    [data-theme="galaxy"] #editorContainer,
+    [data-theme="galaxy"] #characterEditorContainer,
+    [data-theme="galaxy"] #loreEditorContainer,
+    [data-theme="galaxy"] #novelEditorContainer,
+    [data-theme="galaxy"] #timelineContainer {
+      background: linear-gradient(to bottom, #0a0821, #120a38);
+    }
+    
+    [data-theme="galaxy"] .editor-content,
+    [data-theme="galaxy"] #timelineDisplay {
+      background: linear-gradient(to bottom, #1a1135, #241445);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+    
+    [data-theme="galaxy"] .editor-header,
+    [data-theme="galaxy"] .timeline-header {
+      background: linear-gradient(135deg, #241445, #1a0e3b);
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    [data-theme="galaxy"] .modal-content,
+    [data-theme="galaxy"] .summary-content,
+    [data-theme="galaxy"] .timer-content,
+    [data-theme="galaxy"] .timeline-event-content,
+    [data-theme="galaxy"] .timeline-settings-content,
+    [data-theme="galaxy"] .color-modal-content {
+      background: linear-gradient(to bottom, #1a1135, #241445);
+      border-radius: 15px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.5), 0 0 40px rgba(111, 0, 255, 0.2);
+      border: 1px solid rgba(111, 0, 255, 0.3);
+    }
+    
+    [data-theme="galaxy"] h1,
+    [data-theme="galaxy"] h2,
+    [data-theme="galaxy"] h3,
+    [data-theme="galaxy"] h4,
+    [data-theme="galaxy"] .modal-title {
+      background: linear-gradient(to right, #e0e0ff, #a0a0ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 15px;
+    }
+    
+    #novelApp {
+      max-width: 1200px;
+      max-height: calc(100vh - 135px);
+      margin: 0 auto;
+      text-align: left;
+    }
+    #mainContent {
+      display: flex;
+      flex-direction: column;
+      max-height: 96vh;
+    }
+    #mainContent > div:first-child {
+      display: flex;
+      flex-direction: row;
+      flex: 1;
+      height: 100%;
+    }
+    #sidebar {
+      width: 250px;
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--border);
+      padding: 10px;
+      overflow-y: scroll;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .sidebar-header {
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    .sidebar-header img {
+      margin-bottom: 10px;
+    }
+    #menuContainer {
+      position: relative;
+    }
+    #menuBtn {
+      width: 100%;
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 18px;
+    }
+    #menuDropdown {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 100%;
+      background-color: var(--menu-bg);
+      width: 100%;
+      box-shadow: 0px 8px 16px 0px var(--shadow);
+      z-index: 1000;
+      border-radius: 4px;
+      margin-top: 5px;
+    }
+      #aboutContainer {
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  
+  .about-content {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .about-section {
+    margin-bottom: 30px;
+  }
+  
+  .about-section h4 {
+    color: var(--primary);
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 5px;
+  }
+  
+  .about-section p {
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  
+  .about-section ul {
+    padding-left: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .about-section ul li {
+    margin-bottom: 5px;
+    line-height: 1.6;
+  }
+    #backupbtn, #importbtn, #exportNovel, #aboutBtn, #supportBtn {
+      color: var(--text);
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      text-align: left;
+    }
+    #importbtn {
+      border-top: 1px solid var(--border);
+    }
+    .menu-select-container {
+      padding: 12px 16px;
+      border-top: 1px solid var(--border);
+    }
+    #themeSelect {
+      width: 100%;
+      padding: 5px;
+      background: var(--input-bg);
+      color: var(--text);
+      border: 1px solid var(--input-border);
+      border-radius: 4px;
+    }
+    .novel-btn-container {
+      margin-bottom: 10px;
+    }
+    #showNovelListBtn {
+      width: 100%;
+      padding: 8px;
+      background: var(--secondary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    .chapter-header, .character-header, .lore-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .chapter-header h4, .character-header h4, .lore-header h4 {
+      margin: 0;
+      color: var(--text);
+    }
+    .character-header, .lore-header {
+      margin-top: 20px;
+    }
+    #toggleChapters, #toggleCharacters, #toggleLore {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      color: var(--text);
+    }
+    #addChapterBtn, #addCharacterBtn, #addLoreBtn {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 8px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      text-decoration: none;
+    }
+
+    #chapterList, #characterList, #loreList {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    #timelineListContainer {
+      margin-top: 10px;
+    }
+    #timelinebtn {
+      width: 100%;
+      margin-bottom: 10px;
+      margin-top: 10px;
+      padding: 8px;
+      background: var(--secondary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    #novelListContainer {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      background: var(--background);
+    }
+    #novelListContainer h2 {
+      color: var(--text);
+    }
+    #addNovelBtn {
+      width: 200px;
+      margin-bottom: 20px;
+      padding: 8px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    #novelList {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    #editorContainer, #supportContainer {
+      flex: 1;
+      height: 96vh;
+      max-height: 96vh;
+      display: none;
+      flex-direction: column;
+      padding: 10px;
+      background: var(--background);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      overflow: hidden;
+    }
+    #toolbar {
+      padding: 10px;
+      background: var(--toolbar-bg);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      align-items: center;
+      margin-bottom: 10px;
+      border-radius: 4px;
+    }
+    #formatSelect, #fontSelect, #sizeSelect {
+      padding: 5px;
+      background: var(--input-bg);
+      color: var(--text);
+      border: 1px solid var(--input-border);
+      border-radius: 4px;
+    }
+    .toolbar-separator {
+      border-left: 1px solid var(--border);
+      height: 24px;
+      margin: 0 5px;
+    }
+    .toolbar-button {
+      padding: 5px;
+      min-width: 30px;
+      background: var(--input-bg);
+      color: var(--text);
+      border: 1px solid var(--input-border);
+      border-radius: 4px;
+    }
+    #AIgen {
+      padding: 5px 10px;
+      background: var(--primary);
+      color: white;
+      border: 1px solid var(--input-border);
+      border-radius: 4px;
+      font-weight: bold;
+    }
+    #timerBtn {
+      padding: 5px 10px;
+      background: var(--secondary);
+      color: white;
+      border: 1px solid var(--input-border);
+      border-radius: 4px;
+      font-weight: bold;
+    }
+    #editor {
+      height: 95%;
+      flex: 1;
+      border: 1px solid var(--border);
+      padding: 15px;
+      overflow-y: auto;
+      background: var(--editor-bg);
+      border-radius: 4px;
+      line-height: 1.6;
+      color: var(--text);
+      position: relative;
+    }
+    #WCdiv {
+      margin-top: 10px;
+      color: var(--text-light);
+      font-size: 0.9rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .word-count-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    #timerDisplay {
+      display: none;
+    }
+    #cancelTimerBtn {
+      background: none;
+      border: none;
+      color: var(--text-light);
+      margin-left: 5px;
+      cursor: pointer;
+      font-size: 12px;
+      padding: 0;
+    }
+    .export-container {
+      display: flex;
+      gap: 10px;
+    }
+    .export-menu-container {
+      position: relative;
+    }
+    #exportMenuItems {
+      position: absolute;
+      bottom: 100%;
+      right: 0;
+      margin-bottom: 5px;
+      display: none;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      box-shadow: 0 2px 5px var(--shadow);
+      overflow: hidden;
+      width: 150px;
+      z-index: 100;
+    }
+    .export-btn {
+      padding: 8px 12px;
+      background: var(--card-bg);
+      color: var(--text);
+      border: none;
+      border-radius: 0;
+      font-size: 0.8rem;
+      display: block;
+      width: 100%;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    #exportTxtBtn {
+      border-bottom: none;
+    }
+    #toggleExportBtn {
+      padding: 5px 8px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.8rem;
+    }
+    #toggleSidebarBtn {
+      padding: 5px 8px;
+      background: var(--secondary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.8rem;
+    }
+    #characterEditorContainer {
+      flex: 1;
+      display: none;
+      flex-direction: column;
+      padding: 10px;
+      position: relative;
+      top: 0;
+      background: var(--background);
+    }
+    .editor-header {
+      padding: 10px;
+      background: var(--toolbar-bg);
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 4px;
+    }
+    #characterEditTitle {
+      margin: 0;
+      color: var(--text);
+    }
+    #closeCharacterBtn {
+      padding: 5px 10px;
+      background: var(--danger);
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    .editor-content {
+      flex: 1;
+      overflow-y: auto;
+      border: 1px solid var(--border);
+      padding: 15px;
+      background: var(--card-bg);
+      border-radius: 4px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: var(--text);
+    }
+    #addCharacterImageBtn {
+      padding: 5px 10px;
+      background: var(--secondary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+    #charImagesContainer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .form-input {
+      width: 100%;
+      padding: 8px;
+      background: var(--input-bg);
+      color: var(--text);
+      border: 1px solid var(--input-border);
+      border-radius: 4px;
+    }
+    .physical-appearance {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .physical-input {
+      flex: 1;
+      min-width: 150px;
+      padding: 8px;
+      background: var(--input-bg);
+      color: var(--text);
+      border: 1px solid var(--input-border);
+      border-radius: 4px;
+    }
+    .form-textarea {
+      width: 100%;
+      padding: 8px;
+      background: var(--input-bg);
+      color: var(--text);
+      border: 1px solid var(--input-border);
+      border-radius: 4px;
+      height: 100px;
+    }
+    .form-submit {
+      text-align: right;
+    }
+    .submit-btn {
+      padding: 10px 15px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+    #loreEditorContainer {
+      flex: 1;
+      display: none;
+      flex-direction: column;
+      padding: 10px;
+      background: var(--background);
+    }
+    #loreEditTitle {
+      margin: 0;
+      color: var(--text);
+    }
+    #closeLoreBtn {
+      padding: 5px 10px;
+      background: var(--danger);
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    #addLoreImageBtn {
+      padding: 5px 10px;
+      background: var(--secondary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+    #loreImagesContainer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    #customCategoryContainer {
+      display: none;
+      margin-bottom: 15px;
+    }
+    .category-fields {
+      display: none;
+    }
+    .category-fields h4 {
+      margin-top: 20px;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+    #novelEditorContainer {
+      flex: 1;
+      display: none;
+      flex-direction: column;
+      padding: 10px;
+      background: var(--background);
+    }
+    #novelEditTitle {
+      margin: 0;
+      color: var(--text);
+    }
+    #closeNovelEditorBtn {
+      padding: 5px 10px;
+      background: var(--danger);
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    #novelCoverPreviewContainer {
+      width: 150px;
+      height: 200px;
+      border: 1px dashed var(--border);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      background: var(--input-bg);
+    }
+    #novelCoverPreview {
+      max-width: 100%;
+      max-height: 100%;
+      display: none;
+    }
+    #coverUploadPrompt {
+      color: var(--text-light);
+    }
+    #uploadCoverBtn {
+      padding: 5px 10px;
+      background: var(--secondary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      margin-bottom: 5px;
+    }
+    #removeCoverBtn {
+      padding: 5px 10px;
+      background: var(--danger);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      display: none;
+    }
+    .form-row {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+    .form-col {
+      flex: 1;
+    }
+    #timelineContainer {
+      position: sticky;
+      top: 0;
+      flex: 1;
+      display: none;
+      flex-direction: column;
+      padding: 10px;
+      background: var(--background);
+      height: 100vh;
+      overflow-y: auto;
+    }
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    .timeline-header h2 {
+      margin: 0;
+      color: var(--text);
+    }
+    .timeline-controls {
+      display: flex;
+      gap: 10px;
+    }
+    #timelineSettingsBtn {
+      padding: 5px 10px;
+      background: var(--secondary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    #addTimelineEventBtn {
+      padding: 5px 10px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    #timelineViewMode {
+      padding: 5px;
+      background: var(--input-bg);
+      color: var(--text);
+      border: 1px solid var(--input-border);
+      border-radius: 4px;
+    }
+    #closeTimelineBtn {
+      padding: 5px 10px;
+      background: var(--danger);
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    #timelineDisplay {
+      flex: 1;
+      border: 1px solid var(--border);
+      padding: 15px;
+      background: var(--card-bg);
+      border-radius: 4px;
+      overflow: auto;
+    }
+    #horizontalTimeline {
+      display: none;
+      min-width: max-content;
+      position: relative;
+      padding: 20px 0;
+    }
+    .horizontal-timeline-axis {
+      height: 2px;
+      background: var(--border);
+      width: 100%;
+      position: relative;
+    }
+    #verticalTimeline {
+      position: relative;
+      padding: 0 20px;
+      min-height: 500px;
+    }
+    .vertical-timeline-axis {
+      width: 2px;
+      background: var(--border);
+      height: 100%;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    #imageModal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--modal-overlay);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: var(--card-bg);
+      border-radius: 8px;
+      width: 90%;
+      max-width: 500px;
+      padding: 20px;
+      box-shadow: 0 0 20px var(--shadow);
+    }
+    .modal-title {
+      margin-top: 0;
+      margin-bottom: 15px;
+      color: var(--text);
+    }
+    .tab-buttons {
+      display: flex;
+      margin-bottom: 10px;
+    }
+    #urlTabBtn {
+      flex: 1;
+      padding: 8px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 4px 0 0 4px;
+      font-weight: bold;
+    }
+    #uploadTabBtn {
+      flex: 1;
+      padding: 8px;
+      background: var(--toolbar-bg);
+      color: var(--text);
+      border: none;
+      border-radius: 0 4px 4px 0;
+    }
+    .input-field {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      background: var(--input-bg);
+      color: var(--text);
+      border: 1px solid var(--input-border);
+      border-radius: 4px;
+    }
+    #uploadTab {
+      display: none;
+    }
+    #imagePreview {
+      display: none;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    #previewImg {
+      max-width: 100%;
+      max-height: 200px;
+      border: 1px solid var(--border);
+    }
+    .modal-buttons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+    .cancel-btn {
+      padding: 8px 12px;
+      background: var(--toolbar-bg);
+      color: var(--text);
+      border: none;
+      border-radius: 4px;
+    }
+    .insert-btn {
+      padding: 8px 12px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    #specialCharModal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--modal-overlay);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    .special-char-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .special-char-btn {
+      padding: 5px;
+      min-width: 30px;
+      background: var(--input-bg);
+      color: var(--text);
+      border: 1px solid var(--input-border);
+      border-radius: 4px;
+    }
+    #textColorModal, #bgColorModal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--modal-overlay);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    .color-modal-content {
+      background: var(--card-bg);
+      border-radius: 8px;
+      width: 90%;
+      max-width: 300px;
+      padding: 20px;
+      box-shadow: 0 0 20px var(--shadow);
+    }
+    .color-picker {
+      width: 100%;
+      height: 40px;
+      margin-bottom: 10px;
+    }
+    .apply-color-btn {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    .unset-color-btn {
+      width: 100%;
+      padding: 8px;
+      background: var(--secondary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    #imageEditingToolbar {
+      display: none;
+      position: absolute;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      box-shadow: 0 2px 10px var(--shadow);
+      padding: 8px;
+      z-index: 100;
+    }
+    .image-toolbar-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .toolbar-label {
+      margin-right: 8px;
+      font-size: 12px;
+      color: var(--text);
+    }
+    #imageSizeSelect {
+      padding: 4px;
+      font-size: 12px;
+      background: var(--input-bg);
+      color: var(--text);
+      border: 1px solid var(--input-border);
+      border-radius: 4px;
+    }
+    #customSizeControls {
+      display: none;
+      margin-left: 8px;
+    }
+    .size-input {
+      width: 50px;
+      font-size: 12px;
+      padding: 4px;
+      background: var(--input-bg);
+      color: var(--text);
+      border: 1px solid var(--input-border);
+      border-radius: 4px;
+    }
+    .size-separator {
+      margin: 0 4px;
+      color: var(--text);
+    }
+    #applyCustomSizeBtn {
+      margin-left: 4px;
+      padding: 4px;
+      font-size: 12px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    .image-align-btn {
+      padding: 4px 8px;
+      font-size: 12px;
+      background: var(--input-bg);
+      color: var(--text);
+      border: 1px solid var(--input-border);
+      border-radius: 4px;
+    }
+    #imageBorderColor {
+      width: 24px;
+      height: 24px;
+    }
+    #imageBorderWidth {
+      width: 40px;
+      font-size: 12px;
+      padding: 4px;
+      margin: 0 8px;
+      background: var(--input-bg);
+      color: var(--text);
+      border: 1px solid var(--input-border);
+      border-radius: 4px;
+    }
+    #applyImageBorderBtn {
+      padding: 4px 8px;
+      font-size: 12px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    #imagePadding {
+      width: 40px;
+      font-size: 12px;
+      padding: 4px;
+      background: var(--input-bg);
+      color: var(--text);
+      border: 1px solid var(--input-border);
+      border-radius: 4px;
+    }
+    #applyImagePaddingBtn {
+      padding: 4px 8px;
+      margin-left: 8px;
+      font-size: 12px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    #imageAltText {
+      flex: 1;
+      font-size: 12px;
+      padding: 4px;
+      background: var(--input-bg);
+      color: var(--text);
+      border: 1px solid var(--input-border);
+      border-radius: 4px;
+    }
+    #applyImageAltBtn {
+      padding: 4px 8px;
+      margin-left: 8px;
+      font-size: 12px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    .image-toolbar-footer {
+      margin-top: 8px;
+      display: flex;
+      justify-content: space-between;
+    }
+    #removeImageBtn {
+      padding: 4px 8px;
+      background: var(--danger);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+    #closeImageEditingToolbarBtn {
+      padding: 4px 8px;
+      background: var(--toolbar-bg);
+      color: var(--text);
+      border: none;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+    #characterImagePreviewModal, #loreImagePreviewModal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--modal-overlay);
+      z-index: 1100;
+      justify-content: center;
+      align-items: center;
+    }
+    .preview-container {
+      position: relative;
+      max-width: 90%;
+      max-height: 90%;
+    }
+    .close-preview-btn {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    #fullSizeCharacterImage, #fullSizeLoreImage {
+      max-width: 100%;
+      max-height: 90vh;
+      border: 2px solid var(--border);
+    }
+    #summaryModal, #timerModal, #timelineEventModal, #timelineSettingsModal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--modal-overlay);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    .summary-content {
+      background: var(--card-bg);
+      border-radius: 8px;
+      width: 90%;
+      max-width: 600px;
+      padding: 20px;
+      box-shadow: 0 0 20px var(--shadow);
+    }
+    #summaryTextarea {
+      width: 100%;
+      height: 200px;
+      padding: 10px;
+      background: var(--input-bg);
+      color: var(--text);
+      border: 1px solid var(--input-border);
+      border-radius: 4px;
+    }
+    .summary-buttons {
+      display: flex;
+      justify-content: space-between;
+    }
+    #generateSummaryBtn {
+      padding: 8px 12px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    .timer-content {
+      background: var(--card-bg);
+      border-radius: 8px;
+      width: 90%;
+      max-width: 300px;
+      padding: 20px;
+      box-shadow: 0 0 20px var(--shadow);
+    }
+    .timer-input {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+    #timerMinutes {
+      width: 70px;
+      padding: 8px;
+      text-align: center;
+      background: var(--input-bg);
+      color: var(--text);
+      border: 1px solid var(--input-border);
+      border-radius: 4px;
+      font-size: 18px;
+    }
+    .timer-label {
+      margin: 0 10px;
+      font-size: 18px;
+      line-height: 42px;
+      color: var(--text);
+    }
+    #startTimerBtn {
+      width: 100%;
+      padding: 8px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+    .timeline-event-content {
+      background: var(--card-bg);
+      border-radius: 8px;
+      width: 90%;
+      max-width: 600px;
+      padding: 20px;
+      box-shadow: 0 0 20px var(--shadow);
+    }
+    .timeline-settings-content {
+      background: var(--card-bg);
+      border-radius: 8px;
+      width: 90%;
+      max-width: 700px;
+      padding: 20px;
+      box-shadow: 0 0 20px var(--shadow);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .settings-section {
+      margin-bottom: 20px;
+      border: 1px solid var(--border);
+      padding: 15px;
+      border-radius: 4px;
+    }
+    .settings-section h4 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+    #numMonths, #numDaysInWeek {
+      width: 100px;
+      padding: 8px;
+      background: var(--input-bg);
+      color: var(--text);
+      border: 1px solid var(--input-border);
+      border-radius: 4px;
+    }
+    #importFile {
+      display: none;
+    }
+</style>
+  <div id="novelApp" style="max-height: calc(100vh - 150px); max-width: 100vw;">
   <div id="mainContent">
     <div>
       <div id="sidebar">
@@ -1290,7 +6107,7 @@
         <div class="starfield-overlay" id="aboutStars"></div>
         <div class="editor-header">
           <h3>About Promised Pen</h3>
-          <button id="closeAboutBtn">Close</button>
+          <button id="closeAboutBtn" style="padding:8px 12px; background:var(--danger); color:white; border:none; border-radius:4px;">Close</button>
         </div>
         
         <div class="editor-content">
@@ -1329,20 +6146,24 @@
               <h4>Version Information</h4>
               <p>Promised Pen v1.0.0</p>
               <p>Last Updated: May 2025</p>
+              <p><button id="polBtn" class="btn-primary" onclick="window.open('https://pollinations.ai', '_blank')" style="padding-bottom: 6px;">
+      <img src="https://user-uploads.perchance.org/file/75fb752fc6eea615e810d2f3d45e7837.png" alt="Pollinations.ai" style="position: relative; height: 20px; top: 4px;">
+      <span style="font-size: 1.4em;">AI Powered by Pollinations</span>
+    </button>
             </div>
           </div>
         </div>
       </div>
       
       <!-- Support Container with Ko-fi iframe -->
-      <div id="supportContainer" style="display:none; flex-direction:column; height: 100vh; width: 100%; position:relative; overflow-y:auto;">
+      <div id="supportContainer" style="display:none; padding: 0 10px;">
         <div class="starfield-overlay" id="supportStars"></div>
         <div class="editor-header">
           <h3>Support Us</h3>
-          <button id="closeSupportBtn">Close</button>
+          <button id="closeSupportBtn" style="padding:8px 12px; background:var(--danger); color:white; border:none; border-radius:4px;">Close</button>
         </div>
-        <div style="flex:1; padding:20px;">
-          <iframe src="https://ko-fi.com/boveai" style="width:100%; height:100%; border:none;"></iframe>
+        <div style="flex:1; padding:10px;">
+          <iframe src="https://ko-fi.com/boveai" style="width:100%; height:96vh; border:none;"></iframe>
         </div>
       </div>
     </div>
@@ -2050,7 +6871,11 @@ function galaxyStars () {
   window.addEventListener('load', function() {
   setTimeout(function() {
 if (themeSelect.value == 'galaxy') {
+  const elements2 = document.querySelectorAll('.starfield-overlay')
   document.body.setAttribute('data-theme', 'galaxy');
+  elements2.forEach(element2 => {
+    element2.style.display = 'block'; 
+    });
   galaxyStars();
 } else {
   document.body.setAttribute('data-theme', '');
@@ -2060,27 +6885,42 @@ if (themeSelect.value == 'galaxy') {
 
 themeSelect.addEventListener('change', function() {
   const elements = document.querySelectorAll('.star');
+  const elements2 = document.querySelectorAll('.starfield-overlay');
   if (themeSelect.value == 'galaxy') {
     galaxyStars();
     document.body.setAttribute('data-theme', 'galaxy');
     novelEditorStars.style.display = 'block';
   elements.forEach(element => {
     element.style.display = 'block'; 
-    })} else {
+    });
+  elements2.forEach(element2 => {
+    element2.style.display = 'block'; 
+    });
+  } else {
       document.body.setAttribute('data-theme', '');
       novelEditorStars.style.display = 'none';
       elements.forEach(element => {
     element.style.display = 'none';
     });
+      elements2.forEach(element2 => {
+    element2.style.display = 'none'; 
+    });
     }
 });
+  const elements2 = document.querySelectorAll('.starfield-overlay');
   if (themeSelect.value == 'galaxy') {
     novelEditorStars.style.display = 'block';
     document.body.setAttribute('data-theme', 'galaxy');
+    elements2.forEach(element2 => {
+    element2.style.display = 'block'; 
+    });
     galaxyStars();
 } else {
     novelEditorStars.style.display = 'none';
     document.body.setAttribute('data-theme', '');
+    elements2.forEach(element2 => {
+    element2.style.display = 'none'; 
+    });
 }
 </script>
 <script>
@@ -2127,7 +6967,7 @@ themeSelect.addEventListener('change', function() {
     ],
     daysInWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
     daysPerMonth: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
-    viewMode: 'horizontal'
+    viewMode: 'vertical'
   };
 
   // IndexedDB Configuration
@@ -3168,7 +8008,7 @@ themeSelect.addEventListener('change', function() {
     if (window.innerWidth <= 768) {
       // Switch to mobile layout (hide sidebar)
       sidebar.style.display = 'none';
-      mainContent.style.paddingBottom = '50px';
+      mainContent.style.paddingBottom = '60px';
       
       // In mobile view, hide sidebar if editorContainer is not visible
       if (editorContainer.style.display !== 'flex') {
@@ -3177,7 +8017,7 @@ themeSelect.addEventListener('change', function() {
     } else {
       // Switch to desktop layout (show sidebar)
       sidebar.style.display = 'block';
-      mainContent.style.paddingBottom = '0';
+      mainContent.style.paddingBottom = '10';
     }
   }
   
