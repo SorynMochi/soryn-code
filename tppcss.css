@@ -2557,8 +2557,9 @@
     #characterEditorContainer { width: 100%; height: 100%; }
     #novelEditorContainer { width: 100%; height: 100%; }
     #loreEditorContainer { width: 100%; height: 100%; }
-    #mainContent { padding-bottom: 50px; width: 100%; height: calc(100vh - 125px); }
+    #mainContent { padding-bottom: 50px; width: 100%; height: calc(100vh - 135px); }
     #toolbar { flex-wrap: wrap; overflow-x: auto; }
+    #editor { height: 95%; }
   }
   
   .chapter-item, .character-item, .lore-item { 
@@ -3729,7 +3730,7 @@
     
     #novelApp {
       max-width: 1200px;
-      max-height: calc(100vh - 120px);
+      max-height: calc(100vh - 135px);
       margin: 0 auto;
       text-align: left;
     }
@@ -3989,6 +3990,7 @@
       font-weight: bold;
     }
     #editor {
+      height: 95%;
       flex: 1;
       border: 1px solid var(--border);
       padding: 15px;
